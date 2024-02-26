@@ -30,4 +30,4 @@ we installed mongodb/mongoose to avoid roll-up error so vercel can resolve it pr
 # VERCEL
 our ultimate deployment host is vercel.
 # Pitfalls
-The project is with pitfalls and when it happens, pls you can correct and let us know so that we can learn and improve.
+The project is with pitfalls and when it happens, pls you can correct and let us know so that we can learn and improve. For example, if the database is not connected, your log in name might appear a number instead of letter. Also, we maintained just 70% of responsiveness on mobile devices/tablets. 
