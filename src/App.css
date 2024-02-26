@@ -16,3 +16,7 @@ overflow: hidden;
 .leaflet-container{
   height: 450px !important;
 }
+
+Marker{
+color: yellow;
+}
