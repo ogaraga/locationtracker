@@ -23,8 +23,8 @@ Our backend was powered with express and nodejs. we installed some dependencies 
 # Backend and Frontend
 These two were powered and interconnected by cross-origin widecat.
 
-# DATABASE connection/express connection
-Before anything can work, we needed to initiate the express to connect the server and the database
+# DATABASE connection/express-server connection
+Before anything can work, we needed to initiate or start the express to connect the server and the database together
 # Frontend
 we installed mongodb/mongoose to avoid roll-up error so vercel can resolve it properly
 # VERCEL
