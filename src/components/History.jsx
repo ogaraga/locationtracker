@@ -4,7 +4,7 @@ import UserContextApi from "../context/userContext";
 
 
 const History = () => {
-  const [location, setLocation] = useState([]);
+  const [location, setLocation] = useState(null);
   
   const success = (position) => {
     setLocation([position.coords.latitude +',  '+
@@ -20,20 +20,13 @@ const History = () => {
       navigator.geolocation.getCurrentPosition(success, error);
     }
   }, []);
-  setInterval(() => {
-    get;
-    save;
-    date;
-  }, 9000);
-  const get = localStorage.getItem('location', [location])
-  const save = localStorage.setItem('location', [location])
   const date = new Date().toLocaleTimeString()
   const{_id} = useContext(UserContextApi)
   return (
     <>
       <h1>LOCATION HISTORY</h1>
       <p>The coordinates at this time visited: {date}  is : </p>
-      <span style={{ color: "black", textAlign: "center"}}>{[get, save]} </span><br /><br />
+      <span style={{ color: "black", textAlign: "center"}}>{[location]} </span><br /><br />
       <Link to= {`/profile/${_id}`}>
       <button>Profile</button>
       </Link>

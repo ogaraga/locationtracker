@@ -7,7 +7,7 @@ import cors from 'cors';
 const app = express();
 import { verifyToken } from './auth.js';
 
-Dotenv();
+Dotenv.config();
 connectedDb;
 const PORT = process.env.PORT || 3000;
 app.use(cors({origin: '*'}))
