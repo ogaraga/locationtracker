@@ -24,8 +24,10 @@ Our backend was powered with express and nodejs. we installed some dependencies 
 These two were powered and interconnected by cross-origin widecat.
 
 # SECURITY AND NOTIFICATION
-We were able to hash passwords, applied jwt token for authroization to use our website. We also engaged clients with alerts or notification as they click on the DOM elements on the SPA. 
-
+We were able to hash passwords, applied jwt token for authroization to use our website. We also engaged clients with custom alerts or notifications components to get attention of our site users as they click on the DOM elements on the SPA.
+ 
+# INTEGRATION OF MAP WITH REACT
+The geolocation browser Map was independently done to be able to track down the coordinates of the user location at any point in time. We therefore integrated it into map leaflet which help us achieve greater result with its useMapEvents hooks and other library like the openStreetMap and its attribution class.
 # DATABASE connection/express-server connection
 Before anything can work, we needed to initiate or start the express to connect the server and the database together
 # Frontend
