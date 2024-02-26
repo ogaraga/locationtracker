@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext} from "react";
 import axios from "axios";
 import UserContextApi from "../context/userContext";
-import Users from "../../backend/User";
 
 const Login = () => {
   
@@ -23,22 +22,18 @@ const Login = () => {
     };
     
     
-    let myData = [];
-    myData.push(Users);
-    myData.map((item, idx) => {<span key={idx}>
-      <p>{item.email} </p>
-      <p>{item.password} </p>
-    </span>});
+    // let myData = [];
+    // myData.push(Users);
+    // myData.map((item, idx) => {<span key={idx}>
+    //   <p>{item.email} </p>
+    //   <p>{item.password} </p>
+    // </span>});
     
-    if (fetchData() && myData.email ===user.email && myData.password === user.password) {
-      
-      document.getElementById("lab").innerHTML = "internal error occurred!";
-      document.getElementById("lab").style.color = "red";
-      navigate("/home");
-    } else if (fetchData() && myData.email !== undefined && myData.password !== undefined) {
+    if (fetchData() && user.password !== user.confirmPassword &&
+    user.password.length < 3) {
       document.getElementById("lab").innerHTML = "Invalid user";
       document.getElementById("lab").style.color = "red";
-      navigate("/home");
+      navigate("/login");
     } else {
       document.getElementById("lab").innerHTML = "Wait, loging in ...";
       document.getElementById("lab").style.color = "green";
