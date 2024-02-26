@@ -11,7 +11,7 @@ Currently, two official plugins are available:
 
 This is just a developmental project, although it was successfully deployed on vercel for dynamism. We used React and vite for this project with normal javascript. We employed mongodb as our database. 
 # Mongodb 
-was hosted in our local machine(computer) instead of the cloud based. This is why if you are not connected on the machine where the database base is located, the data fetched from it will be fully at atimes. So, you need to connect to enjoy this project maximally.
+was hosted in our local machine(computer) instead of the cloud based. This is why if you are not connected on the machine where the database is located, the data fetched from it will be funny to read at atimes. So, you need to connect to the local drive to enjoy this project maximally. Except you have the tools to migrate it to cloudbase database.
 # Componentations
 we broke our project into components for us to get the best result. There are about 11 conponents with different results.
 # ContextApi
