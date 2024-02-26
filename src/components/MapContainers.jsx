@@ -7,7 +7,6 @@ import {
   useMapEvents
 } from "react-leaflet";
 import { useState } from "react";
-import History from "./History";
 
 const MapContainers = () => {
   function LocationMarker() {
@@ -25,7 +24,7 @@ const MapContainers = () => {
       <div>
         <Marker position={position}>
           <Popup>
-            <History />
+            <p>You are here</p>
           </Popup>
         </Marker>
       </div>
