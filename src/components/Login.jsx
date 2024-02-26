@@ -88,7 +88,7 @@ const Login = () => {
           <div className={styles.btn}>
             <p>Don`t have account</p>
             <img src={mage} alt="Arrow" className ={styles.img} />
-            <Link to="/register">
+            <Link to="/">
               <button type="button" className={styles.uniq}>
                 sign up
               </button>
