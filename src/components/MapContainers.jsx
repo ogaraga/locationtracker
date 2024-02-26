@@ -7,8 +7,19 @@ import {
   useMapEvents
 } from "react-leaflet";
 import { useState } from "react";
+import icon from "leaflet/dist/images/marker-icon.png";
+import L from "leaflet";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+
 
 const MapContainers = () => {
+  let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+  });
+  
+  L.Marker.prototype.options.icon = DefaultIcon;
+  
   function LocationMarker() {
     const [position, setPosition] = useState(null);
     const map = useMapEvents({
