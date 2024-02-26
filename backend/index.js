@@ -1,12 +1,15 @@
+/* eslint-disable no-undef */
+import Dotenv from 'dotenv';
 import express from 'express';
 import connectedDb from './Db.js';
-import { router } from './routes.js';
+import  router from './routes.js';
 import cors from 'cors';
 const app = express();
 import { verifyToken } from './auth.js';
-// eslint-disable-next-line no-undef
-const PORT = process.env.PORT || 3000;
+
+Dotenv();
 connectedDb;
+const PORT = process.env.PORT || 3000;
 app.use(cors({origin: '*'}))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}));

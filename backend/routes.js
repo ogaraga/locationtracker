@@ -3,7 +3,8 @@ import express from "express";
 import mdel from "./User.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-export const router = express.Router();
+
+const router = express.Router();
 
 
 router.get('/', (req, res) => {
@@ -114,3 +115,4 @@ router.delete('/update/:_id', async (req, res) => {
     }
 }
 );
+export default router;
