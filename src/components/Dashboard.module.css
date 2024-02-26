@@ -1,0 +1,48 @@
+.dash{
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+border: 1px solid teal;
+background-color: grey;
+padding: 10px;
+max-width: 500px;
+min-height: 200px;
+}
+.dash p{
+    padding: 10px;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: aliceblue;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.dash p:hover{
+    background-color:crimson;
+    color: white;
+    
+}
+.dash a{
+    text-decoration: none;
+}
+
+@media screen and (max-width:600) {
+    .dash{
+        width: auto;
+        margin: auto
+    }
+    .dash p{
+        width:auto;
+        margin:auto
+    }
+}
+@media screen and (max-width:800) {
+    .dash{
+        width: auto;
+        margin: auto
+    }
+    .dash p{
+        width:auto;
+        margin:auto
+    }
+}

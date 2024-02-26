@@ -1,0 +1,36 @@
+.alert{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid grey;
+    z-index: 10;
+}
+.alert p{
+    text-align: center;
+    color: black;
+}
+.alert button{
+    margin: 10px;
+    width: 30px;
+    padding: 5px;
+}
+@media screen and (max-width:600) {
+    .aler p{
+        width: auto;
+        margin: auto
+    }
+    .alert button{
+        width:auto;
+        margin:auto
+    }
+}
+@media screen and (max-width:800) {
+    .aler p{
+        width: auto;
+        margin: auto
+    }
+    .alert button{
+        width:auto;
+        margin:auto
+    }
+}

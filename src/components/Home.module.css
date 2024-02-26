@@ -1,0 +1,194 @@
+body{
+    overflow: hidden;
+}
+nav{
+    background-color: rgba(128, 128, 128, 0.171);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    font-weight: 900;
+    
+}
+h3{
+    background-color: coral;
+    background: linear-gradient(to right, green,yellow, aliceblue, crimson,teal);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: cursive;
+    letter-spacing: 5px;
+    text-align: start;
+    animation: geolocate 10s linear forwards;
+}
+@keyframes geolocate {
+    from{
+        letter-spacing: -10px;
+        width: 0%;
+        text-align: start;
+        
+    }
+    to{
+        letter-spacing: 30px;
+        text-align: center;
+        width: 100vw;
+        font-weight: bolder;
+    }
+}
+footer{
+    text-align: center;
+    background-color: gray;
+    width: 100%;
+    height: 8vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+footer p{
+    color: white;
+    margin-top: 20px;
+}
+i{
+    position: fixed;
+    font-weight: 900;
+    cursor: pointer;
+    right: 6%;
+    top: 2%;   
+    margin: auto -20px;
+    font-size: 30px;
+}
+#myspan{
+    position: fixed;
+    font-weight: 900;
+    cursor: pointer;
+    right: 6%;
+    top: 2%;
+    color: black;
+    margin: auto -20px;
+   
+}
+.divlink{
+    background-color: aliceblue;
+    width: 120px;
+    height: 60px;
+    position: absolute;
+    top: 20px;
+    right: 1%;
+    
+}
+.prof{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.span1{
+    position: absolute;
+    color: black;
+    left: 50%;
+    top: 0%;
+    width: fit-content;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 10px;
+    text-transform: lowercase;
+    transform: translate(-50%, -50%);
+}
+.span1:hover{
+    background-color: grey;
+    color: blue;
+}
+.span2:hover{
+    background-color: grey;
+    color: blue;
+}
+
+.span2{
+
+    position: absolute;
+    color: black;
+    left: 50%;
+    top: 40%;
+    width: fit-content;
+    transform: translate(-50%, -30%);
+    font-size: 15px;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 10px;
+    text-transform: lowercase;
+}
+.imgs{
+    position: absolute;
+    right: 5%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    background-color:transparent;
+        
+}
+.username{
+    position: absolute;
+    right: 8%;
+    top:38%;
+    color: white;
+}
+
+@media screen and (max-width:600) {
+    nav{
+        width: auto;
+        margin: auto
+    }
+    .imgs{
+        width:auto;
+        margin:auto
+    }
+    .divlink{
+        width: auto;
+        margin:auto
+}
+.prof{
+    width: auto;
+    margin: auto;
+}
+i{
+    margin: auto;
+    width: auto;
+
+}
+body{
+    width: auto;
+    margin: auto;
+}
+}
+@media screen and (max-width:800) {
+    nav{
+        width: auto;
+        margin: auto
+    }
+    .divlink{
+        width: auto;
+        margin: auto;
+    }
+    .imgs{
+        width:auto;
+        margin:auto
+    }
+    .prof{
+        width: auto;
+        margin: auto;
+    }
+    i{
+        margin: auto;
+        width: auto;
+    
+    }
+    body{
+        width: auto;
+        margin: auto;
+    }
+}

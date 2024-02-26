@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.notify{
+    display: flex;
+    align-items: center;
+    justify-content: center;;
+    z-index: 10;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px green, 2px 2px 2px crimson;
+    background-color: grey;
+    flex-direction: column;
+}
+.notp, span{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+.btn{
+    width: 35px;
+    padding: 3px;
+    background-color: aliceblue;
+    color: black;
+    cursor: pointer;
+    margin: 10px;
+}
+.btn:hover{
+    background-color: yellow;
+    color: crimson;
+}
