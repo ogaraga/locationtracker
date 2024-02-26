@@ -22,8 +22,11 @@ const Dashboard = () => {
         <p>CHECK HISTORY</p>
         </Link>
         {modal? <p onClick={handleDelete}>DELETE ACCOUNT</p>:<Alert/>}
-               
+        <Link to= '/home'>
+        <p>Back Home</p>  
+         </Link>   
         </div>
+        
         </>
   )
 }
