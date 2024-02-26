@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import express from "express";
-import mdel from "./User.js";
+import User from "./User.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
@@ -24,7 +24,7 @@ const saltRound = bcrypt.genSaltSync(10);
 router.post('/register', async (req, res) => {
     //find out if there is info about this user in the database
     const { email, password, confirmPassword, userName } = req.body;
-    const user = await mdel.findOne({ email })
+    const user = await User.findOne({ email })
     if (user) {
         res.status(400).json('User already exists')
     } else {
@@ -33,7 +33,7 @@ router.post('/register', async (req, res) => {
             const passhashed = bcrypt.hashSync(password, saltRound)
 
             const passhashed2 = bcrypt.hashSync(confirmPassword, saltRound)
-            const user = await mdel.create({
+            const user = await User.create({
                 userName: userName,
                 email: email,
                 password: passhashed,
@@ -55,7 +55,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     //find out if this user is registered
     const { email, password } = req.body;
-    const user = await mdel.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
         res.status(400).json('The user is not in the database');
     }
@@ -83,7 +83,7 @@ router.post('/login', async (req, res) => {
 })
 router.put('/update/:_id', async (req, res) => {
 
-    const user = await mdel.findById(req.params._id)
+    const user = await User.findById(req.params._id)
 
     if (!user) {
 
@@ -94,7 +94,7 @@ router.put('/update/:_id', async (req, res) => {
             const passhashed = bcrypt.hashSync(password, saltRound)
             const filter = { _id: req.params._id }
             const update = { userName: userName, email: email, password: passhashed }
-            const user = await mdel.findByIdAndUpdate(filter, update, { new: true });
+            const user = await User.findByIdAndUpdate(filter, update, { new: true });
             await user.save();
             res.status(200).json({ "Authrorised_profile_updated": user })
 
@@ -106,7 +106,7 @@ router.put('/update/:_id', async (req, res) => {
 }
 )
 router.delete('/update/:_id', async (req, res) => {
-    const user = await mdel.findByIdAndDelete(req.params._id)
+    const user = await User.findByIdAndDelete(req.params._id)
 
     try {
         res.status(200).json({ 'Authorised profile deleted': user });
