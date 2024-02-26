@@ -29,7 +29,7 @@ const Login = () => {
     //   <p>{item.password} </p>
     // </span>});
     
-    if (fetchData() && user.password !== user.confirmPassword &&
+    if (fetchData() && user.password !== user.confirmPassword ||
     user.password.length < 3) {
       document.getElementById("lab").innerHTML = "Invalid user";
       document.getElementById("lab").style.color = "red";
