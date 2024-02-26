@@ -13,3 +13,6 @@ body{
   margin: auto;
 overflow: hidden;
 }
+.leaflet-container{
+  height: 450px !important;
+}
