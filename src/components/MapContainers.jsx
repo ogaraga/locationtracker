@@ -1,3 +1,4 @@
+import styles from './MapContainers.module.css';
 import "leaflet/dist/leaflet.css";
 import {
   MapContainer,
@@ -42,8 +43,7 @@ const MapContainers = () => {
     <MapContainer
       center={{ lat: 51.505, lng: -0.09 }}
       zoom={13}
-      scrollWheelZoom={false}
-      style={{ width: "800px", height: "450px" }}
+      scrollWheelZoom={false} className= {styles.container}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -12,8 +12,10 @@ nav{
     display: flex;
     align-items: center;
     font-weight: 900;
+    width: 100%;
     
 }
+
 h3{
     background-color: coral;
     background: linear-gradient(to right, green,yellow, aliceblue, crimson,teal);
@@ -58,7 +60,7 @@ i{
     cursor: pointer;
     right: 6%;
     top: 2%;   
-    margin: auto -20px;
+    margin: auto -5px;
     font-size: 30px;
 }
 #myspan{
@@ -68,7 +70,7 @@ i{
     right: 6%;
     top: 2%;
     color: black;
-    margin: auto -20px;
+    margin: auto -5px;
    
 }
 .divlink{
@@ -122,6 +124,7 @@ i{
     margin-top: 10px;
     text-transform: lowercase;
 }
+
 .imgs{
     position: absolute;
     right: 5%;
@@ -140,36 +143,48 @@ i{
 
 @media screen and (max-width:600) {
     nav{
-        width: auto;
+        width: fit-content;
         margin: auto
     }
     .imgs{
-        width:auto;
+        width:fit-content;
         margin:auto
     }
     .divlink{
-        width: auto;
+        width: fit-content;
         margin:auto
 }
+.container{
+    width: auto !important;
+    height: 300px !important;
+  }
 .prof{
     width: auto;
     margin: auto;
 }
-i{
+i, #myspan{
+    width: auto ;
     margin: auto;
-    width: auto;
 
 }
 body{
-    width: auto;
+    width: 100%;
     margin: auto;
+    overflow: hidden;
+}
+.header{
+    overflow: hidden;
 }
 }
 @media screen and (max-width:800) {
     nav{
-        width: auto;
-        margin: auto
+        width: fit-content;
+        margin: auto;
     }
+    .container{
+        width: auto !important;
+        height: 300px !important;
+      }
     .divlink{
         width: auto;
         margin: auto;
@@ -182,13 +197,17 @@ body{
         width: auto;
         margin: auto;
     }
-    i{
+    i, #myspan{
         margin: auto;
         width: auto;
     
     }
     body{
-        width: auto;
+        width: 100%;
         margin: auto;
+        overflow: hidden;
+    }
+    .header{
+        overflow: hidden;
     }
 }

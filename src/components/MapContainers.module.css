@@ -1,0 +1,26 @@
+.container {
+  width: 500px;
+  height: 450px;
+  margin: 10px auto;
+}
+
+@media screen and (max-width: 600) {
+  .container {
+    width: auto !important;
+    height: 300px !important;
+  }
+}
+@media screen and (max-width: 800) {
+  .container {
+    width: auto !important;
+    height: 300px !important;
+  }
+  body {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+  }
+  .header {
+    overflow: hidden;
+  }
+}

@@ -85,14 +85,25 @@ footer p{
         margin: auto;
         overflow: hidden;
     }
+    .header{
+        width: auto;
+        overflow: hidden;
+    }
 }
 @media screen and (max-width:600) {
     nav{
         width: 500px;
         margin: auto
     }
+    
+    body{
+        width: auto;
+        margin: auto;
+        overflow: hidden;
+    }    
     .header{
         width: auto;
+        overflow: hidden;
     }
         
     

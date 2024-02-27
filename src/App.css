@@ -1,9 +1,9 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
+body {
   background-color: aliceblue;
   width: 100vw;
   height: 100vh;
@@ -11,12 +11,84 @@ body{
   align-items: center;
   justify-content: center;
   margin: auto;
-overflow: hidden;
+  overflow: hidden;
 }
-.leaflet-container{
-  height: 450px !important;
+.container {
+  height: 450px;
+  width: 500px;
 }
 
-Marker{
-color: yellow;
+Marker {
+  color: yellow;
+}
+
+@media screen and (max-width: 600) {
+  nav {
+    width: fit-content;
+    margin: auto;
+  }
+  .imgs {
+    width: fit-content;
+    margin: auto;
+  }
+  .divlink {
+    width: fit-content;
+    margin: auto;
+  }
+  .prof {
+    width: auto;
+    margin: auto;
+  }
+  i,
+  #myspan {
+    width: auto;
+    margin: auto;
+  }
+  body {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+  }
+  .header {
+    overflow: hidden;
+  }
+  .container {
+    width: auto !important;
+    height: 300px !important;
+  }
+}
+@media screen and (max-width: 800) {
+  nav {
+    width: fit-content;
+    margin: auto;
+  }
+  .divlink {
+    width: auto;
+    margin: auto;
+  }
+  .imgs {
+    width: auto;
+    margin: auto;
+  }
+  .prof {
+    width: auto;
+    margin: auto;
+  }
+  i,
+  #myspan {
+    margin: auto;
+    width: auto;
+  }
+  body {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+  }
+  .header {
+    overflow: hidden;
+  }
+  .container {
+    width: auto !important;
+    height: 300px !important;
+  }
 }

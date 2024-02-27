@@ -5,6 +5,7 @@ import UserContextApi from "../context/userContext";
 import styles from "./Home.module.css";
 import MapContainers from "./MapContainers";
 import { Link } from "react-router-dom";
+import style from './MapContainers.module.css'
 const Home = () => {
   const {user, modal, setModal } = useContext(UserContextApi);
   window.addEventListener("load", () => {
@@ -55,7 +56,7 @@ const Home = () => {
           </div>
         </nav>
       </header>
-      <div>{!modal ? <Notification /> : <MapContainers />}</div>
+      <div className={style.container} >{!modal ? <Notification /> : <MapContainers />}</div>
       <footer>
         <p>Zidio Development copyrights &copy; {new Date().getFullYear()} </p>
       </footer>
