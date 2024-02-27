@@ -1,65 +1,83 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import MapContainers from "./MapContainers";
 import Notification from "./Notification";
 import UserContextApi from "../context/userContext";
 import styles from "./Home.module.css";
 import MapContainers from "./MapContainers";
-import { Link, useParams } from "react-router-dom";
-import style from './MapContainers.module.css'
+import { Link } from "react-router-dom";
+import style from "./MapContainers.module.css";
+import axios from "axios";
 const Home = () => {
-  const {user, modal, setModal} = useContext(UserContextApi);
-  const {_id} = useParams();
+  const { user, setUser, modal, setModal } = useContext(UserContextApi);
+ 
+  const id = user._id;
+  const value = `/profile/${id}`
   window.addEventListener("load", () => {
     setModal(!modal);
   });
   const [open, setOpen] = useState(null);
 
-
   const handleOpen = () => {
     setOpen(!open);
   };
-  const handleClose = () => {    
+  const handleClose = () => {
     setOpen(!open);
   };
-  const handles =()=>{
-    setModal(!modal)
-  }
+  const handles = async () => {
+    axios
+      .get("http://localhost:5000/profile" + id)
+      .then((res) => setUser(res.data))
+      .catch((err) => console.log(err));
+    setModal(!modal);
+    
+  };
+  useEffect(()=>{
+    handles();
+  },[id])
   return (
     <>
       <header className={styles.header}>
         <nav className={styles.nav}>
           <h3>GEOLOCATION</h3>
-          <p className={styles.username}>{user.userName}</p>
+          <p className={styles.username}>{user.userName || user.email}</p>
           <img
             src="https://api.dicebear.com/7.x/adventurer/svg"
             alt="Avatar"
             width="100"
             height="100"
-          className={styles.imgs} />
+            className={styles.imgs}
+          />
           <div className={styles.prof}>
-            {!open && 
+            {!open && (
               <i
                 className="fa-solid fa-ellipsis-vertical"
                 onClick={handleOpen}
               ></i>
-             }
-             {open &&
-            <span className="fa-solid fa-xmark" onClick={handleClose} id={styles.myspan} >
-
-              <div className={styles.divlink}>
-                <Link to={`/profile/`+_id}>
-                  <p className={styles.span1}onClick={handles}>Profile</p>
-                </Link>
-                <Link to="/login">
-                  <p className={styles.span2}>LogOut</p>
-                </Link>
-              </div>
-              </span>}
-             
+            )}
+            {open && (
+              <span
+                className="fa-solid fa-xmark"
+                onClick={handleClose}
+                id={styles.myspan}
+              >
+                <div className={styles.divlink}>
+                  <Link to={value}>
+                    <p className={styles.span1} onClick={handles}>
+                      Profile
+                    </p>
+                  </Link>
+                  <Link to="/login">
+                    <p className={styles.span2}>LogOut</p>
+                  </Link>
+                </div>
+              </span>
+            )}
           </div>
         </nav>
       </header>
-      <div className={style.container} >{!modal ? <Notification /> : <MapContainers />}</div>
+      <div className={style.container}>
+        {!modal ? <Notification /> : <MapContainers />}
+      </div>
       <footer>
         <p>Zidio Development copyrights &copy; {new Date().getFullYear()} </p>
       </footer>

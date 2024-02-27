@@ -7,6 +7,10 @@ import jwt from 'jsonwebtoken';
 const router = express.Router();
 
 
+
+
+const saltRound = bcrypt.genSaltSync(10);
+
 router.get('/', (req, res) => {
     res.send('loading...')
 })
@@ -27,7 +31,7 @@ router.get('/login', async (req, res) => {
     }
 });
 router.get('/profile/:id', async (req, res) => {
-    const user = await User.find();
+    const user = await User.find(req.params._id);
     if (!user) {
         res.status(400).json('No user found');
     } else {
@@ -40,7 +44,6 @@ router.get('/profile/:id', async (req, res) => {
 
 })
 
-const saltRound = bcrypt.genSaltSync(10);
 router.post('/register', async (req, res) => {
     //find out if there is info about this user in the database
     const { email, password, confirmPassword, userName } = req.body;

@@ -1,23 +1,24 @@
 import { useContext, useEffect } from "react";
 import UserContextApi from "../context/userContext";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Update = () => {
-    const {_id} =useParams();
   const { user, setUser, modal, setModal } = useContext(UserContextApi);
   
+  const id = user._id;
+  const value = `/update/${id}`;
   const handleChange = (e) => {
     e.preventDefault();
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   useEffect(()=>{
-    axios.get('http://localhost:5000/profile/'+_id).then(res=>setUser(res.data)).catch(err=>console.log(err))
+    axios.get('http://localhost:5000/profile/'+id).then(res=>setUser(res.data)).catch(err=>console.log(err))
   },[])
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .put('http://localhost:5000/profile/'+_id, user)
+      .put('http://localhost:5000/profile/'+id, user)
       .then((res) => res.json(res.data)
       )
       .catch((err) => console.log(err));
@@ -68,7 +69,7 @@ const Update = () => {
             Save
           </button>
         </form>
-      ) :  <Link to= {`/profile/`+_id}>
+      ) :  <Link to= {value}>
         
       <button onClick={handleops}> Account now updated click here to go back</button>
       </Link>

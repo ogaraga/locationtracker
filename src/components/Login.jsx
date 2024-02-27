@@ -1,6 +1,6 @@
 import styles from "./Login.module.css";
 import mage from "../assets/arrow.png";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import axios from "axios";
 import UserContextApi from "../context/userContext";
@@ -8,13 +8,14 @@ import UserContextApi from "../context/userContext";
 const Login = () => {
   const { user, setUser } = useContext(UserContextApi);
 
+  const id = user._id;
   const handleChange = (ev) => {
     setUser({ ...user, [ev.target.name]: ev.target.value });
   };
   const navigate = useNavigate();
-  const {_id}=useParams();
+
   useEffect(()=>{
-    axios.get('http://localhost:5000/login'+_id).then((res)=>setUser(res.data)).catch(err=>console.log(err))
+    axios.get('http://localhost:5000/login'+id).then((res)=>setUser(res.data)).catch(err=>console.log(err))
   },[])
   
   const handleSubmit = async (ev) => {

@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import {useContext, useEffect, useState } from "react";
+import { Link} from "react-router-dom";
 import UserContextApi from "../context/userContext";
+
 
 
 const History = () => {
@@ -21,13 +22,15 @@ const History = () => {
     }
   }, []);
   const date = new Date().toLocaleTimeString()
-  const{_id} = useContext(UserContextApi)
+const {user} = useContext(UserContextApi)
+  const id = user._id;
+  const value = `/profile/${id}`
   return (
     <>
       <h1>LOCATION HISTORY</h1>
-      <p>The coordinates at this time visited: {date}  is : </p>
+      <p>The coordinates at this time,  {date}, is : </p>
       <span style={{ color: "black", textAlign: "center"}}>{[location]} </span><br /><br />
-      <Link to= {`/profile/${_id}`}>
+      <Link to= {value}>
       <button>Profile</button>
       </Link>
     </>
