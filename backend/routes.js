@@ -10,24 +10,34 @@ const router = express.Router();
 router.get('/', (req, res) => {
     res.send('loading...')
 })
-router.get('/register', (req, res) => {
-    res.send('register')
+router.get('/register', async (req, res) => {
+    const user = await User.find();
+    if (!user) {
+        throw res.status(400).json('No data to fetch');
+    } else {
+        res.status(200).json(user)
+    }
 })
-router.get('/login', (req, res) => {
-    res.send('login')
-})
+router.get('/login', async (req, res) => {
+    const user = await User.find();
+    if (!user) {
+        throw res.status(400).json('No data to fetch');
+    } else {
+        res.status(200).json(user)
+    }
+});
 router.get('/profile/:id', async (req, res) => {
     const user = await User.find();
-    if(!user){
+    if (!user) {
         res.status(400).json('No user found');
-    }else{
+    } else {
         try {
             res.status(200).json(user);
         } catch (error) {
             res.status(500).json(error.message)
         }
     }
-    
+
 })
 
 const saltRound = bcrypt.genSaltSync(10);
@@ -97,7 +107,7 @@ router.put('/profile/:_id', async (req, res) => {
 
     if (!user) {
 
-        res.status(400).json('No profile to fetch')
+        res.status(400).json('No profile to update')
     } else
         try {
             const { password, email, userName } = req.body;
@@ -116,12 +126,21 @@ router.put('/profile/:_id', async (req, res) => {
 }
 )
 router.delete('/profile/:_id', async (req, res) => {
-    const user = await User.findByIdAndDelete(req.params._id)
 
-    try {
-        res.status(200).json({ 'Authorised profile deleted': user });
-    } catch (error) {
-        res.status(500).json(error.message);
+    const user = await User.findById(req.params._id)
+
+    if (!user) {
+
+        res.status(400).json('No profile to delete')
+    } else {
+
+        try {
+            const user = await User.findByIdAndDelete(req.params._id)
+
+            res.status(200).json({ 'Authorised profile deleted': user });
+        } catch (error) {
+            res.status(500).json(error.message);
+        }
     }
 }
 );

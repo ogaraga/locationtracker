@@ -9,7 +9,7 @@ const Notification = () => {
  }
   return (
     <div className={styles.notify} >
-      <p className={styles.notp} >You are logged in as <input type="text" name="userName" value={JSON.stringify(user).slice(54, 60)}  readOnly style={{textAlign: "center", width: 'auto'}}/></p>
+      <p className={styles.notp} >You are logged in as <input type="text" name="userName" value={user.userName}  disabled style={{textAlign: "center", width: 'auto', color: "white"}}/></p>
       <span>click Ok and then click on the map.</span>
       <button type="button" onClick={closeMe} className={styles.btn} >Ok</button>
     </div>

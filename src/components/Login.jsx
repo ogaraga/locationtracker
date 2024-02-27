@@ -1,7 +1,7 @@
 import styles from "./Login.module.css";
 import mage from "../assets/arrow.png";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import axios from "axios";
 import UserContextApi from "../context/userContext";
 
@@ -12,39 +12,41 @@ const Login = () => {
     setUser({ ...user, [ev.target.name]: ev.target.value });
   };
   const navigate = useNavigate();
+  const {_id}=useParams();
+  useEffect(()=>{
+    axios.get('http://localhost:5000/login'+_id).then((res)=>setUser(res.data)).catch(err=>console.log(err))
+  },[])
+  
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    const fetchData = async () => {
-      await axios
-        .post("http://localhost:5000/login", user)
-        .then((res) => setUser(res.data))
-        .catch((err) => console.log(err));
+    const dValue = {
+      userName: user.userName,
+      email: user.email,
+      password: user.password,
+      _id: user._id,
     };
-
-    // let myData = [];
-    // myData.push(Users);
-    // myData.map((item, idx) => {<span key={idx}>
-    //   <p>{item.email} </p>
-    //   <p>{item.password} </p>
-    // </span>});
-
-    if (
-      fetchData() &&
-      user.password !== user.confirmPassword &&
-      user.password.length < 3
-    ) {
-      document.getElementById("lab").innerHTML = "Invalid user";
-      document.getElementById("lab").style.color = "red";
-      navigate("/login");
-    } else {
-      document.getElementById("lab").innerHTML = "Wait, loging in ...";
-      document.getElementById("lab").style.color = "green";
-      setTimeout(() => {
-        navigate("/home");
-      }, 5000);
-    }
+    await axios
+      .post("http://localhost:5000/login", dValue)
+      .then((res) => {
+        if (res.data) {
+          document.getElementById("lab").innerHTML = "Wait, loging in ...";
+          document.getElementById("lab").style.color = "green";
+          setTimeout(() => {
+            navigate("/home");
+          }, 5000);
+        }
+        else{
+          console.log('internal error');
+        }
+      })
+      .catch((err) =>{if(err){
+        document.getElementById("lab").innerHTML = "Invalid email or password";
+        document.getElementById("lab").style.color = "red";
+      }else{
+        console.log('internal error')
+      }
+    } )
   };
-
   return (
     <>
       <nav>

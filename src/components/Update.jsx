@@ -4,29 +4,32 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
 const Update = () => {
-    const {id} =useParams();
-  const { _id, user, setUser, modal, setModal } = useContext(UserContextApi);
+    const {_id} =useParams();
+  const { user, setUser, modal, setModal } = useContext(UserContextApi);
   
   const handleChange = (e) => {
     e.preventDefault();
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   useEffect(()=>{
-    axios.get('http://localhost:5000/profile/'+id).then(res=>setUser(res.data)).catch(err=>console.log(err))
+    axios.get('http://localhost:5000/profile/'+_id).then(res=>setUser(res.data)).catch(err=>console.log(err))
   },[])
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .put('http://localhost:5000/profile/'+id, user)
+      .put('http://localhost:5000/profile/'+_id, user)
       .then((res) => res.json(res.data)
       )
       .catch((err) => console.log(err));
     setModal(!modal);
   };
+  const handleops =()=>{
+    setModal(!modal)
+  }
   return (
     <div>
       <h1>Update your Records here</h1>
-      {modal ? (
+      {!modal ? (
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -65,9 +68,9 @@ const Update = () => {
             Save
           </button>
         </form>
-      ) :  <Link to= {`/profile/${_id}`}>
+      ) :  <Link to= {`/profile/`+_id}>
         
-      <button> Account now updated click here to go back</button>
+      <button onClick={handleops}> Account now updated click here to go back</button>
       </Link>
       }
       <footer>

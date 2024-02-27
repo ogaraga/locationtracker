@@ -4,18 +4,12 @@ import UserContextApi from "./userContext";
 
 const UserContextProvider = ({ children }) => {
 
-  const [user, setUser] = useState({
-    userName: '',
-    email: '',
-    password: '',
-    _id: ''
-  });
+  const [user, setUser] = useState('');
  
-  const _id = JSON.stringify(user).slice(17,39).toString();
  const [modal, setModal] = useState("");
-console.log(user)
+
   return (
-    <UserContextApi.Provider value={{modal, setModal, user, setUser, _id}}>
+    <UserContextApi.Provider value={{modal, setModal, user, setUser}}>
       {children}
     </UserContextApi.Provider>
   );

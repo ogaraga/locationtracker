@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, useParams} from 'react-router-dom'
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -8,12 +8,10 @@ import Profile from './components/Profile';
 import Dash from './components/Dashboard';
 import History from './components/History';
 import './App.css'
-import { useContext } from 'react';
-import UserContextApi from './context/userContext';
 import Update from './components/Update';
 import PageNotFound from './components/PageNotFound';
 function App() {
-  const {_id} = useContext(UserContextApi);
+  const {_id} = useParams();
   return (
     
 <BrowserRouter>
@@ -22,13 +20,13 @@ function App() {
       <Route path='/home' element ={<Home/>} />
       <Route path='/register' index element ={<Register/>} />
       <Route path='/login'  element ={<Login/>} />
-      <Route path={`/profile/${_id}`} element ={<Profile/>} />
+      <Route path={`/profile/`+_id} element ={<Profile/>} />
       
       <Route path='/alert'  element ={<Alert/>} />
       <Route path='/notification'  element ={<Notification/>} />
       <Route path='/dash'  element ={<Dash/>} />
       <Route path='/hist'  element ={<History/>} />
-      <Route path={`/update/${_id}`}  element ={<Update
+      <Route path={`/update/`+_id}  element ={<Update
       />} />
       <Route path='*'  element ={<PageNotFound/>} />
     </Routes>

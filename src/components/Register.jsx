@@ -1,8 +1,8 @@
 import axios from "axios";
 import styles from "./Register.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import mage from "../assets/arrow.png";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import UserContextApi from "../context/userContext";
 const Register = () => {
   const { user, setUser } = useContext(UserContextApi);
@@ -10,10 +10,14 @@ const Register = () => {
   const handleChange = (ev) => {
     setUser({ ...user, [ev.target.name]: ev.target.value });
   };
-  const handleSubmit = (ev) => {
+ const {_id}=useParams();
+  useEffect(()=>{
+    axios.get('http://localhost:5000/register'+_id).then((res)=>setUser(res.data)).catch(err=>console.log(err))
+  },[])
+  
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
 
-    let result = async () => {
       const dValue = {
         userName: user.userName,
         email: user.email,
@@ -23,24 +27,25 @@ const Register = () => {
       };
       await axios
         .post("http://localhost:5000/register", dValue)
-        .then((res) => res.json(res.data));
-    };
-    if (
-      result() &&
-      user.password == user.confirmPassword &&
-      user.password.length >= 3
-    ) {
-      document.getElementById("lab").innerHTML =
+        .then((res) => {if(res.data){
+          document.getElementById("lab").innerHTML =
         "Wait, creating your profile...";
       document.getElementById("lab").style.color = "green";
       setTimeout(() => {
         navigate("/login");
-      }, 5000);
-    } else {
-      document.getElementById("lab").innerHTML = "Invalid input";
-      document.getElementById("lab").style.color = "red";
-      navigate("/register");
-    }
+      }, 5000)
+        }
+          else{
+            console.log('internal error')
+          }
+        }).catch(err=>{if(err){
+          document.getElementById("lab").innerHTML = "user-email already created or wrong password";
+          document.getElementById("lab").style.color = "red";
+        }else{
+          console.log('internal error')
+        }
+      } );    
+    
   };
   return (
     <>

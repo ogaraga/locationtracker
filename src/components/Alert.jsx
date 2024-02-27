@@ -2,13 +2,18 @@ import axios from 'axios';
 import styles from './Alert.module.css';
 import UserContextApi from '../context/userContext';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 const Alert = () => {
-    const{user, modal, setModal} = useContext(UserContextApi);
+  const {_id} = useParams();
+    const{modal, setModal} = useContext(UserContextApi);
 
-    const handleOk =()=>{
-        axios.delete(`http://localhost:5000/register/${JSON.stringify(user)}`).then(res=>res.json(res.data)).catch(err=>console.log(err))
-        setModal(!modal)
+    const handleOk =async ()=>{
+      await axios
+      .delete("http://localhost:5000/profile" + _id)
+      .then((res) => res.json(res.data))
+      .catch((err) => console.log(err));
+      setModal(!modal)
+
     }
     const handleNo =()=>{
         setModal(!modal)

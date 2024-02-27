@@ -4,10 +4,11 @@ import Notification from "./Notification";
 import UserContextApi from "../context/userContext";
 import styles from "./Home.module.css";
 import MapContainers from "./MapContainers";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import style from './MapContainers.module.css'
 const Home = () => {
-  const {user, modal, setModal } = useContext(UserContextApi);
+  const {user, modal, setModal} = useContext(UserContextApi);
+  const {_id} = useParams();
   window.addEventListener("load", () => {
     setModal(!modal);
   });
@@ -20,13 +21,15 @@ const Home = () => {
   const handleClose = () => {    
     setOpen(!open);
   };
-
+  const handles =()=>{
+    setModal(!modal)
+  }
   return (
     <>
       <header className={styles.header}>
         <nav className={styles.nav}>
           <h3>GEOLOCATION</h3>
-          <p className={styles.username} >{JSON.stringify(user).slice(54, 60)}</p>
+          <p className={styles.username}>{user.userName}</p>
           <img
             src="https://api.dicebear.com/7.x/adventurer/svg"
             alt="Avatar"
@@ -44,8 +47,8 @@ const Home = () => {
             <span className="fa-solid fa-xmark" onClick={handleClose} id={styles.myspan} >
 
               <div className={styles.divlink}>
-                <Link to={`/profile/${JSON.stringify(user).slice(17, 39).toString()}`}>
-                  <p className={styles.span1}>Profile</p>
+                <Link to={`/profile/`+_id}>
+                  <p className={styles.span1}onClick={handles}>Profile</p>
                 </Link>
                 <Link to="/login">
                   <p className={styles.span2}>LogOut</p>

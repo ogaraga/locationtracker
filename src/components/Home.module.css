@@ -174,12 +174,21 @@ body{
 }
 .header{
     overflow: hidden;
+    width: auto;
+}
+footer{
+    width: 100%;
+    overflow: hidden;
 }
 }
 @media screen and (max-width:800) {
     nav{
         width: fit-content;
         margin: auto;
+    }
+    footer{
+        width: 100%;
+        overflow: hidden;
     }
     .container{
         width: auto !important;
@@ -209,5 +218,6 @@ body{
     }
     .header{
         overflow: hidden;
+        width: 100%;
     }
 }
