@@ -16,8 +16,18 @@ router.get('/register', (req, res) => {
 router.get('/login', (req, res) => {
     res.send('login')
 })
-router.get('/update', (req, res) => {
-    res.send('login')
+router.get('/profile/:id', async (req, res) => {
+    const user = await User.find();
+    if(!user){
+        res.status(400).json('No user found');
+    }else{
+        try {
+            res.status(200).json(user);
+        } catch (error) {
+            res.status(500).json(error.message)
+        }
+    }
+    
 })
 
 const saltRound = bcrypt.genSaltSync(10);
@@ -81,7 +91,7 @@ router.post('/login', async (req, res) => {
         }
     }
 })
-router.put('/update/:_id', async (req, res) => {
+router.put('/profile/:_id', async (req, res) => {
 
     const user = await User.findById(req.params._id)
 
@@ -105,7 +115,7 @@ router.put('/update/:_id', async (req, res) => {
 
 }
 )
-router.delete('/update/:_id', async (req, res) => {
+router.delete('/profile/:_id', async (req, res) => {
     const user = await User.findByIdAndDelete(req.params._id)
 
     try {

@@ -1,22 +1,27 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import UserContextApi from "../context/userContext";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Update = () => {
+    const {id} =useParams();
   const { _id, user, setUser, modal, setModal } = useContext(UserContextApi);
+  
   const handleChange = (e) => {
     e.preventDefault();
     setUser({ ...user, [e.target.name]: e.target.value });
   };
+  useEffect(()=>{
+    axios.get('http://localhost:5000/profile/'+id).then(res=>setUser(res.data)).catch(err=>console.log(err))
+  },[])
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .put(`http://localhost:5000/update/${_id}`)
-      .then((res) => res.json(res.data))
+      .put('http://localhost:5000/profile/'+id, user)
+      .then((res) => res.json(res.data)
+      )
       .catch((err) => console.log(err));
     setModal(!modal);
-    return "Account updated!" 
   };
   return (
     <div>
