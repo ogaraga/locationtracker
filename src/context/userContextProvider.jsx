@@ -1,15 +1,19 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import UserContextApi from "./userContext";
 
 const UserContextProvider = ({ children }) => {
-
-  const [user, setUser] = useState('');
- 
- const [modal, setModal] = useState("");
-
+  let cid = Date.now();
+  const userId = useRef(cid);
+  const [user, setUser] = useState("");
+  const id = userId.current;
+  
+  const [modal, setModal] = useState("");
+  
   return (
-    <UserContextApi.Provider value={{modal, setModal, user, setUser}}>
+    <UserContextApi.Provider
+      value={{ modal, setModal, user, setUser,  id }}
+    >
       {children}
     </UserContextApi.Provider>
   );

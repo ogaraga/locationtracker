@@ -2,16 +2,23 @@ import axios from 'axios';
 import styles from './Alert.module.css';
 import UserContextApi from '../context/userContext';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
+
 const Alert = () => {
-    const{user, modal, setModal} = useContext(UserContextApi);
-const id = user._id
+    const{user,id, modal, setModal} = useContext(UserContextApi);
+    const navigate =useNavigate();
+
     const handleOk =async ()=>{
       await axios
-      .delete("http://localhost:5000/profile" +id)
-      .then((res) => res.json(res.data))
-      .catch((err) => console.log(err));
+      .delete("http://localhost:5000/profile/"+id, {data: user})
+      .then((res) => {if(res.data){
+        alert('data deleted')
+        navigate('/login');        
       setModal(!modal)
+      }else{
+        alert('internal_error')
+      }}).catch(err => alert(err.message));
+      navigate(`*`)
 
     }
     const handleNo =()=>{
@@ -20,9 +27,8 @@ const id = user._id
   return (
     <div className={styles.alert} >
         <p>Do you want to delete your account?
-        <button onClick={handleNo}>No</button>
-        <Link to= '*'>
-         <button onClick={handleOk}>Ok</button></Link>
+        <button onClick={handleNo()}>No</button>
+        <button onClick={handleOk}>Ok</button>
         </p>
     </div>
   )

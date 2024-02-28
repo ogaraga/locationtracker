@@ -1,7 +1,6 @@
 import { useContext } from "react"
 import UserContextApi from "../context/userContext"
 import styles from './Notification.module.css'
-// import MapContainers from "./MapContainers";
 const Notification = () => {
  const {user,modal, setModal} = useContext(UserContextApi);
  const closeMe =()=>{

@@ -10,7 +10,10 @@ import History from './components/History';
 import './App.css'
 import Update from './components/Update';
 import PageNotFound from './components/PageNotFound';
+import { useContext } from 'react';
+import UserContextApi from './context/userContext';
 function App() {
+  const {id} = useContext(UserContextApi)
   return (
     
 <BrowserRouter>
@@ -19,13 +22,13 @@ function App() {
       <Route path='/home' element ={<Home/>} />
       <Route path='/register' index element ={<Register/>} />
       <Route path='/login'  element ={<Login/>} />
-      <Route path={`/profile/:_id`} element ={<Profile/>} />
+      <Route path={`/profile/${id}`} element ={<Profile/>} />
       
       <Route path='/alert'  element ={<Alert/>} />
       <Route path='/notification'  element ={<Notification/>} />
       <Route path='/dash'  element ={<Dash/>} />
       <Route path='/hist'  element ={<History/>} />
-      <Route path={`/update/:_id`}  element ={<Update
+      <Route path={`/update/${id}`}  element ={<Update
       />} />
       <Route path='*'  element ={<PageNotFound/>} />
     </Routes>

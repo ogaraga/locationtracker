@@ -1,20 +1,17 @@
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import UserContextApi from "../context/userContext";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Update = () => {
-  const { user, setUser, modal, setModal } = useContext(UserContextApi);
+  const { id, user, setUser, modal, setModal } = useContext(UserContextApi);
   
-  const id = user._id;
-  const value = `/update/${id}`;
+  const value = `/profile/${id}`;
+
   const handleChange = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-  useEffect(()=>{
-    axios.get('http://localhost:5000/profile/'+id).then(res=>setUser(res.data)).catch(err=>console.log(err))
-  },[])
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
@@ -24,13 +21,15 @@ const Update = () => {
       .catch((err) => console.log(err));
     setModal(!modal);
   };
+  const navigate = useNavigate()
   const handleops =()=>{
     setModal(!modal)
+navigate(`/profile/${id}`)
   }
   return (
     <div>
       <h1>Update your Records here</h1>
-      {!modal ? (
+      {modal ? (
         <form onSubmit={handleSubmit}>
           <input
             type="text"

@@ -2,18 +2,14 @@ import axios from "axios";
 import styles from "./Register.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import mage from "../assets/arrow.png";
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import UserContextApi from "../context/userContext";
 const Register = () => {
-  const { user, setUser } = useContext(UserContextApi);
+  const {user, setUser } = useContext(UserContextApi);
   const navigate = useNavigate();
   const handleChange = (ev) => {
     setUser({ ...user, [ev.target.name]: ev.target.value });
   };
- const id = user._id;
-  useEffect(()=>{
-    axios.get('http://localhost:5000/register'+id).then((res)=>setUser(res.data)).catch(err=>console.log(err))
-  },[])
   
   const handleSubmit = async (ev) => {
     ev.preventDefault();

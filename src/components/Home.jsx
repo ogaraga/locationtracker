@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 // import MapContainers from "./MapContainers";
 import Notification from "./Notification";
 import UserContextApi from "../context/userContext";
@@ -6,11 +6,9 @@ import styles from "./Home.module.css";
 import MapContainers from "./MapContainers";
 import { Link } from "react-router-dom";
 import style from "./MapContainers.module.css";
-import axios from "axios";
 const Home = () => {
-  const { user, setUser, modal, setModal } = useContext(UserContextApi);
+  const {id, user, modal, setModal } = useContext(UserContextApi);
  
-  const id = user._id;
   const value = `/profile/${id}`
   window.addEventListener("load", () => {
     setModal(!modal);
@@ -23,17 +21,6 @@ const Home = () => {
   const handleClose = () => {
     setOpen(!open);
   };
-  const handles = async () => {
-    axios
-      .get("http://localhost:5000/profile" + id)
-      .then((res) => setUser(res.data))
-      .catch((err) => console.log(err));
-    setModal(!modal);
-    
-  };
-  useEffect(()=>{
-    handles();
-  },[id])
   return (
     <>
       <header className={styles.header}>
@@ -44,7 +31,7 @@ const Home = () => {
             src="https://api.dicebear.com/7.x/adventurer/svg"
             alt="Avatar"
             width="100"
-            height="100"
+            height="100" 
             className={styles.imgs}
           />
           <div className={styles.prof}>
@@ -62,7 +49,7 @@ const Home = () => {
               >
                 <div className={styles.divlink}>
                   <Link to={value}>
-                    <p className={styles.span1} onClick={handles}>
+                    <p className={styles.span1} >
                       Profile
                     </p>
                   </Link>
