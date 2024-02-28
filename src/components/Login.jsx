@@ -15,16 +15,16 @@ const Login = () => {
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    const dValue = {
-      userName: user.userName,
-      email: user.email,
-      password: user.password,
-      _id: user._id,
-    };
+    // const dValue = {
+    //   userName: user.userName,
+    //   email: user.email,
+    //   password: user.password,
+    //   _id: user._id,
+    // };
     await axios
-      .post("http://localhost:5000/login", dValue)
-      .then((res) => {
-        if (JSON.stringify(res.data).toString()) {
+      .post("http://localhost:5000/login", user)
+      .then(res => {
+        if (res.data) {
           document.getElementById("lab").innerHTML = "Wait, loging in ...";
           document.getElementById("lab").style.color = "green";
           setTimeout(() => {
@@ -34,13 +34,10 @@ const Login = () => {
         else{
          alert('internal/network error');
         }
-      })
-      .catch((err) =>{if(err){
+      }).catch((err) =>{if(err)
         document.getElementById("lab").innerHTML = "Invalid email or password";
         document.getElementById("lab").style.color = "red";
-      }else{
-        alert('internal/network error')
-      }
+         
     } )
   };
   return (
@@ -53,7 +50,7 @@ const Login = () => {
           <h2>User location tracking cyberSpace</h2>
         </div>
         <h1>login here</h1>
-        <form onSubmit={handleSubmit} className={styles.login}>
+        <form onSubmit={handleSubmit} className={styles.login} method="post">
           <label htmlFor="email">Email:</label>
           <input
             type="email"

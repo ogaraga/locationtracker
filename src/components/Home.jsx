@@ -9,7 +9,7 @@ import style from "./MapContainers.module.css";
 const Home = () => {
   const {user, modal, setModal } = useContext(UserContextApi);
  
-  const value = `/profile/${user}`
+  const value = `/profile/${user._id}`
   window.addEventListener("load", () => {
     setModal(!modal);
   });

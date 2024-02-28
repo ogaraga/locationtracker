@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import { useContext, useEffect} from "react";
 import UserContextApi from "../context/userContext";
 import Alerts from "./Alerts";
 import axios from "axios";
+// import User from "../../backend/User";
 
 const Dashboard = () => {
   const {user,setUser, modal, setModal } = useContext(UserContextApi);
@@ -15,16 +17,16 @@ const Dashboard = () => {
   const handles = () => {
     setModal(modal);
   };
-  const handleEdit = async () => {
+  const handleEdit = async (req, res) => {
     await axios
-      .get("http://localhost:5000/profile" + user)
+      .get("http://localhost:5000/register", {params:{id: req.query.user._id}})
       .then((res) => setUser(res.data))
       .catch((err) => console.log(err));
   };
   useEffect(() => {
     handleEdit();
   }, []);
-  const value = `/update/${user}`;
+  const value = `/update/${user._id}`;
   return (
     <>
       <h1> Dashboard</h1>

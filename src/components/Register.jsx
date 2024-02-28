@@ -14,16 +14,16 @@ const Register = () => {
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
-      const dValue = {
-        userName: user.userName,
-        email: user.email,
-        password: user.password,
-        confirmPassword: user.confirmPassword,
-        _id: user._id,
-      };
+      // const dValue = {
+      //   userName: user.userName,
+      //   email: user.email,
+      //   password: user.password,
+      //   confirmPassword: user.confirmPassword,
+      //   _id: user._id,
+      // };
       await axios
-        .post("http://localhost:5000/register", dValue)
-        .then((res) => {if(JSON.stringify(res.data).toString()){
+        .post("http://localhost:5000/register", user)
+        .then(res => {if(res.data){
           document.getElementById("lab").innerHTML =
         "Wait, creating your profile...";
       document.getElementById("lab").style.color = "green";
@@ -34,12 +34,9 @@ const Register = () => {
           else{
             console.log('internal error')
           }
-        }).catch(err=>{if(err){
+        }).catch(err=>{if(err)
           document.getElementById("lab").innerHTML = "user already created or wrong password";
-          document.getElementById("lab").style.color = "red";
-        }else{
-          alert('internal/network error')
-        }
+          document.getElementById("lab").style.color = "red";        
       } );    
     
   };
@@ -53,7 +50,7 @@ const Register = () => {
           <h2>User location tracking cyberSpace</h2>
         </div>
         <h1>Sign up here</h1>
-        <form onSubmit={handleSubmit} className={styles.register}>
+        <form onSubmit={handleSubmit} className={styles.register} method="post">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -76,7 +73,7 @@ const Register = () => {
             autoComplete="off"
           />
           <br />
-          <label htmlFor="password">password:</label>
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             name="password"
@@ -87,7 +84,7 @@ const Register = () => {
             autoComplete="off"
           />
           <br />
-          <label htmlFor="username">confirmPassword:</label>
+          <label htmlFor="username">ConfirmPassword:</label>
           <input
             type="password"
             name="confirmPassword"

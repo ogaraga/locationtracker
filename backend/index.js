@@ -6,13 +6,15 @@ import  router from './routes.js';
 import cors from 'cors';
 const app = express();
 import { verifyToken } from './auth.js';
+import bodyParser from 'body-parser';
 
 Dotenv.config();
-connectedDb;
+connectedDb();
 const PORT = process.env.PORT || 3000;
 app.use(cors({origin: '*'}))
-app.use(express.json())
-app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.json())
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', router);
 app.use('/profile/:_id', verifyToken)
 app.use('/home', verifyToken);
