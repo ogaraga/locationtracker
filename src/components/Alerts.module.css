@@ -2,16 +2,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid grey;
-    z-index: 10;
+    border: 1px solid white;
+    z-index: 10;    
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+    min-width: 350px;
 }
 .alert p{
     text-align: center;
-    color: black;
+    color: coral;
 }
 .alert button{
     margin: 10px;
-    width: 30px;
+    width: 15%;
     padding: 5px;
 }
 @media screen and (max-width:600) {

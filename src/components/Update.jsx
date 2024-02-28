@@ -4,9 +4,9 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const Update = () => {
-  const { id, user, setUser, modal, setModal } = useContext(UserContextApi);
+  const {user, setUser, modal, setModal } = useContext(UserContextApi);
   
-  const value = `/profile/${id}`;
+  const value = `/profile/${user}`;
 
   const handleChange = (e) => {
     // e.preventDefault();
@@ -15,7 +15,7 @@ const Update = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .put('http://localhost:5000/profile/'+id, user)
+      .put('http://localhost:5000/profile/'+user, user)
       .then((res) => res.json(res.data)
       )
       .catch((err) => console.log(err));
@@ -24,7 +24,7 @@ const Update = () => {
   const navigate = useNavigate()
   const handleops =()=>{
     setModal(!modal)
-navigate(`/profile/${id}`)
+navigate(`/profile/${user}`)
   }
   return (
     <div>

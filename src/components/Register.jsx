@@ -23,7 +23,7 @@ const Register = () => {
       };
       await axios
         .post("http://localhost:5000/register", dValue)
-        .then((res) => {if(res.data){
+        .then((res) => {if(JSON.stringify(res.data).toString()){
           document.getElementById("lab").innerHTML =
         "Wait, creating your profile...";
       document.getElementById("lab").style.color = "green";
@@ -35,10 +35,10 @@ const Register = () => {
             console.log('internal error')
           }
         }).catch(err=>{if(err){
-          document.getElementById("lab").innerHTML = "user-email already created or wrong password";
+          document.getElementById("lab").innerHTML = "user already created or wrong password";
           document.getElementById("lab").style.color = "red";
         }else{
-          console.log('internal error')
+          alert('internal/network error')
         }
       } );    
     

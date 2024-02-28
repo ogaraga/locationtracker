@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import { useContext, useEffect} from "react";
 import UserContextApi from "../context/userContext";
-import Alert from "./Alert";
+import Alerts from "./Alerts";
 import axios from "axios";
 
 const Dashboard = () => {
-  const { id, setUser, modal, setModal } = useContext(UserContextApi);
+  const {user,setUser, modal, setModal } = useContext(UserContextApi);
 
   const handleDelete = () => {
     setModal(!modal);
@@ -17,14 +17,14 @@ const Dashboard = () => {
   };
   const handleEdit = async () => {
     await axios
-      .get("http://localhost:5000/profile" + id)
+      .get("http://localhost:5000/profile" + user)
       .then((res) => setUser(res.data))
       .catch((err) => console.log(err));
   };
   useEffect(() => {
     handleEdit();
   }, []);
-  const value = `/update/${id}`;
+  const value = `/update/${user}`;
   return (
     <>
       <h1> Dashboard</h1>
@@ -35,7 +35,7 @@ const Dashboard = () => {
         <Link to="/hist">
           <button type="button">CHECK HISTORY</button>
         </Link>
-        {modal ? <button type="button" onClick={handleDelete}>DELETE ACCOUNT</button> : <Alert />}
+        {modal ? <button type="button" onClick={handleDelete}>DELETE ACCOUNT</button> : <Alerts />}
         <Link to="/home">
           <button type="button" onClick={handles}>Back Home</button>
         </Link>

@@ -7,13 +7,13 @@ import MapContainers from "./MapContainers";
 import { Link } from "react-router-dom";
 import style from "./MapContainers.module.css";
 const Home = () => {
-  const {id, user, modal, setModal } = useContext(UserContextApi);
+  const {user, modal, setModal } = useContext(UserContextApi);
  
-  const value = `/profile/${id}`
+  const value = `/profile/${user}`
   window.addEventListener("load", () => {
     setModal(!modal);
   });
-  const [open, setOpen] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);

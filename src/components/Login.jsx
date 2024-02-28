@@ -24,7 +24,7 @@ const Login = () => {
     await axios
       .post("http://localhost:5000/login", dValue)
       .then((res) => {
-        if (res.data) {
+        if (JSON.stringify(res.data).toString()) {
           document.getElementById("lab").innerHTML = "Wait, loging in ...";
           document.getElementById("lab").style.color = "green";
           setTimeout(() => {
@@ -32,14 +32,14 @@ const Login = () => {
           }, 5000);
         }
         else{
-          console.log('internal error');
+         alert('internal/network error');
         }
       })
       .catch((err) =>{if(err){
         document.getElementById("lab").innerHTML = "Invalid email or password";
         document.getElementById("lab").style.color = "red";
       }else{
-        console.log('internal error')
+        alert('internal/network error')
       }
     } )
   };
