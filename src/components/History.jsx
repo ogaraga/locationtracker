@@ -20,7 +20,7 @@ const History = () => {
   }, []);
   const date = new Date().toLocaleTimeString();
   const { user } = useContext(UserContextApi);
-  const value = `/profile/${user}`;
+  const value = `/profile/${user._id}`;
   return (
     <>
       <h1>LOCATION HISTORY</h1>
