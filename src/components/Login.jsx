@@ -15,17 +15,11 @@ const Login = () => {
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    // const dValue = {
-    //   userName: user.userName,
-    //   email: user.email,
-    //   password: user.password,
-    //   _id: user._id,
-    // };
     await axios
       .post("http://localhost:5000/login", user)
       .then(res => {
         if (res.data) {
-          document.getElementById("lab").innerHTML = "Wait, loging in ...";
+          document.getElementById("lab").innerHTML = "Wait, logging in ...";
           document.getElementById("lab").style.color = "green";
           setTimeout(() => {
             navigate("/home");
