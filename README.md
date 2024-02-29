@@ -34,5 +34,7 @@ Before anything can work, we needed to initiate or start the express to connect 
 we installed mongodb/mongoose at the front (reactjs) to avoid roll-up error so that vercel can resolve it properly
 # VERCEL
 our ultimate deployment host is vercel.
+# Reloading or relaunching routes
+Login page goes with jwt token. You can only access it via proper routing. Refreshing logging when the user time has expire, will return error.
 # Pitfalls
-The project is with pitfalls and when it happens, pls you can correct and let us know so that we can learn and improve. For example, if the database is not connected, your log in name might appear a number instead of letter or error may happen otherwise, you can roll on. Also, we maintained just 70% of responsiveness on mobile devices/tablets. 
+The project is with pitfalls and when it happens, pls you can correct and let us know so that we can learn and improve. For example, if the database is not connected, your log in name might appear a number instead of letter or error may happen otherwise, you can roll on. Also, we maintained just 70% of responsiveness on mobile devices/tablets. Our update and delete API works fine backend but on the frontend, it shows error.
