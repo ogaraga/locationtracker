@@ -16,7 +16,8 @@ app.use(bodyParser.json())
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', router);
-app.use('/profile/:_id', verifyToken)
+app.use('/register/:id', verifyToken)
+app.use('/login', verifyToken)
 app.use('/home', verifyToken);
 app.listen(PORT, ()=>console.log(`Server running on port ${PORT}`));
 
