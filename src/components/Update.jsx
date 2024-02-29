@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Update = () => {
   const {user, setUser, modal, setModal } = useContext(UserContextApi);
 
-  const value = `/profile/${user._id}`;
+  const value = `/profile/${user.id}`;
 
   const handleChange = (e) => {
     // e.preventDefault();
@@ -14,26 +14,32 @@ const Update = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .put(`http://localhost:5000/register/${user._id}`, user)
+    try {
+      await axios
+      .put(`http://localhost:5000/register/${user.id}`, user)
       .then((res) => {
         if (res.data) {
           alert("Profile_Updated successfully");
-          navigate(`/update/${user._id}`);
+          navigate(`/update/${user.id}`);
          }
       })
       .catch((err) => {
         if (err) {
           alert(err.message);
-          navigate(`/update/${user._id}`);
+          navigate(`/update/${user.id}`);
         }
       });
     setModal(!modal);
+    } catch (error) {
+      alert(error.message)
+      navigate(`/update/${user.id}`);
+    }
+    
   };
   const navigate = useNavigate();
   const handleops = () => {
     setModal(!modal);
-    navigate(`/profile/${user._id}`);
+    navigate(`/profile/${user.id}`);
   };
   return (
     <div>
@@ -80,7 +86,6 @@ const Update = () => {
       ) : (
         <Link to={value}>
           <button onClick={handleops}>
-            {" "}
             Account now updated click here to go back
           </button>
         </Link>

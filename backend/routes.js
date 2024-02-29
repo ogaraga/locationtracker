@@ -3,6 +3,7 @@ import express from "express";
 import User from "./User.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import {ObjectId } from "mongodb";
 
 const router = express.Router();
 
@@ -23,33 +24,6 @@ router.get('/login', async (req, res) => {
         res.status(200).json(user)
     }
 });
-router.get('/register', async (req, res) => {
-    //find a specific user
-    if(req.query._id){
-       try {
-        const user = await User.find(req.query._id);
-        if(!user){
-            res.status(404).json('No data to fetch')
-        }else{
-            res.status(200).json(user);
-        }
-       } catch (error) {
-        res.status(500).json(error.message);
-       }
-    }else{
-        //find all users
-    const user = await User.find();
-    if (!user) {
-        res.status(400).json('No user found');
-    } else {
-        try {
-            res.status(200).json(user);
-        } catch (error) {
-            res.status(500).json(error.message)
-        }
-    }
-}
-})
 
 router.post('/register', async (req, res) => {
     //find out if there is info about this user in the database
@@ -82,7 +56,36 @@ router.post('/register', async (req, res) => {
             console.log(error.message)
         }
     }
+});
+router.get('/register', async (req, res) => {
+    //find a specific user
+    const id = new ObjectId({id: req.query.id}).toString();
+    if(id){
+       try {
+        const user = await User.find(id)
+        if(!user){
+            res.status(404).json('No data to fetch')
+        }else{
+            res.status(200).json(user);
+        }
+       } catch (error) {
+        res.status(500).json(error.message);
+       }
+    }else{
+        //find all users
+    const user = await User.find();
+    if (!user) {
+        res.status(400).json('No user found');
+    } else {
+        try {
+            res.status(200).json(user);
+        } catch (error) {
+            res.status(500).json(error.message)
+        }
+    }
+}
 })
+
 router.post('/login', async (req, res) => {
     //find out if this user is registered
     const { email, password } = req.body;
@@ -93,10 +96,10 @@ router.post('/login', async (req, res) => {
 
     else {
         //compara passwords
-        try {
 
+        try {
             const userInfo = {
-                _id: user._id,
+                id: user.id,
                 password: user.password
             };
             const verifyPassword = bcrypt.compareSync(password, user.password)
@@ -113,9 +116,10 @@ router.post('/login', async (req, res) => {
         }
     }
 })
-router.put('/register/:_id', async (req, res) => {
-        const _id = req.params._id;
-    const user = await User.findById(_id)
+router.put('/register/:id', async (req, res) => {
+
+        const id = new ObjectId({id:req.params.id}).toString()
+    const user = await User.findById(id)
 
     if (!user) {
         res.status(400).json('No profile to update')
@@ -123,11 +127,11 @@ router.put('/register/:_id', async (req, res) => {
         try {
             const { password, email, userName } = req.body;
             const passhashed = bcrypt.hashSync(password, saltRound)
-            const filter = { _id: req.params._id }
+            const filter = id; 
             const update = { userName: userName, email: email, password: passhashed }
             const user = await User.findByIdAndUpdate(filter, update, { new: true });
             await user.save();
-            res.status(200).json({ "Profile_with_id updated": _id })
+            res.status(200).json( `${user} updated`)
 
         } catch (error) {
             res.status(500).json(error.message);
@@ -136,17 +140,18 @@ router.put('/register/:_id', async (req, res) => {
 
 }
 )
-router.delete('/register/:_id', async (req, res) => {
-    const _id = req.params._id;
-    const user = await User.findById(_id)
+router.delete('/register/:id', async (req, res) => {
+    
+    const id = new ObjectId({id: req.params.id}).toString()
+    const user = await User.findById(id)
 
     if (!user) {
         res.status(400).json('No profile to delete')
     } else {
 
         try {
-            await User.findByIdAndDelete(_id)
-            res.status(200).json( `Profile with id ${_id} is temporally deleted`);
+            await User.findByIdAndDelete(id)
+            res.status(200).json( `${user} is temporally deleted`);
         } catch (error) {
             res.status(500).json(error.message);
         }

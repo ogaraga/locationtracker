@@ -1,45 +1,54 @@
-/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 import styles from "./Dashboard.module.css";
-import { useContext, useEffect} from "react";
+import { useContext } from "react";
 import UserContextApi from "../context/userContext";
 import Alerts from "./Alerts";
 import axios from "axios";
-// import User from "../../backend/User";
 
 const Dashboard = () => {
-  const {user,setUser, modal, setModal } = useContext(UserContextApi);
+  const { user, setUser, modal, setModal } = useContext(UserContextApi);
 
   const handleDelete = () => {
     setModal(!modal);
-    
   };
   const handles = () => {
     setModal(modal);
   };
-  const handleEdit = async (req, res) => {
+  const handleEdit = async () => {
+    // e.preventDefault();
     await axios
-      .get("http://localhost:5000/register", {params:{id: req.query.user._id}})
+      .get(`http://localhost:5000/register/${user.id}`)
       .then((res) => setUser(res.data))
       .catch((err) => console.log(err));
   };
-  useEffect(() => {
-    handleEdit();
-  }, []);
-  const value = `/update/${user._id}`;
+  // useEffect(() => {
+  //   handleEdit();
+  // }, []);
+  const value = `/update/${user.id}`;
+
   return (
     <>
       <h1> Dashboard</h1>
       <div className={styles.dash}>
         <Link to={value}>
-          <button type="button" onClick={handleEdit}>EDIT ACCOUNT</button>
-        </Link>
+          <button type="button" onClick={handleEdit}>
+            EDIT ACCOUNT
+          </button>
+        </Link>{" "}
         <Link to="/hist">
           <button type="button">CHECK HISTORY</button>
         </Link>
-        {modal ? <button type="button" onClick={handleDelete}>DELETE ACCOUNT</button> : <Alerts />}
+        {modal ? (
+          <button type="button" onClick={handleDelete}>
+            DELETE ACCOUNT
+          </button>
+        ) : (
+          <Alerts />
+        )}
         <Link to="/home">
-          <button type="button" onClick={handles}>Back Home</button>
+          <button type="button" onClick={handles}>
+            Back Home
+          </button>
         </Link>
       </div>
     </>

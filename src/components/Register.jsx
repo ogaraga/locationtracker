@@ -14,13 +14,6 @@ const Register = () => {
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
-      // const dValue = {
-      //   userName: user.userName,
-      //   email: user.email,
-      //   password: user.password,
-      //   confirmPassword: user.confirmPassword,
-      //   _id: user._id,
-      // };
       await axios
         .post("http://localhost:5000/register", user)
         .then(res => {if(res.data){

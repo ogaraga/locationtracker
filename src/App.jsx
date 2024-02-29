@@ -21,13 +21,13 @@ function App() {
       <Route path='/home' element ={<Home/>} />
       <Route path='/register' index element ={<Register/>} />
       <Route path='/login'  element ={<Login/>} />
-      <Route path={`/profile/${user._id}`} element ={<Profile/>} />
+      <Route path={`/profile/${user.id}`} element ={<Profile/>} />
       
       <Route path='/alerts'  element ={<Alerts/>} />
       <Route path='/notification'  element ={<Notification/>} />
       <Route path='/dash'  element ={<Dash/>} />
       <Route path='/hist'  element ={<History/>} />
-      <Route path={`/update/${user._id}`}  element ={<Update
+      <Route path={`/update/${user.id}`}  element ={<Update
       />} />
       <Route path='*'  element ={<PageNotFound/>} />
     </Routes>
