@@ -32,7 +32,7 @@ const History = () => {
       <br />
       <br />
       <Link to={value}>
-        <button>Profile</button>
+        <button>Dashboard</button>
       </Link>
     </>
   );
