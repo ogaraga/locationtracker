@@ -2,16 +2,18 @@ import { useContext} from "react";
 import UserContextApi from "../context/userContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const AllHistory = () => {
   const { user, setUser, modal, setModal } = useContext(UserContextApi);
   
-  
-     axios
-      .get("http://localhost:5000/login")
-      .then((res) => setUser(JSON.stringify(res.data)))
-      .catch((err) => console.log(err.message));
- 
+  useEffect(()=>{
+    axios
+    .get("http://localhost:5000/login")
+    .then((res) => setUser(JSON.stringify(res.data)))
+    .catch((err) => console.log(err.message));
+  },[user])
+      
   const value = `/profile/${user.id}`;
   const dValues = [{
     userName: user.userName,

@@ -7,7 +7,9 @@ import axios from "axios";
 
 const Dashboard = () => {
   const { user, setUser, modal, setModal } = useContext(UserContextApi);
-
+window.addEventListener('load',()=>{
+  setModal(!modal)
+})
   const handleDelete = () => {
     setModal(!modal);
   };
