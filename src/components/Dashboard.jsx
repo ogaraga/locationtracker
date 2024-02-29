@@ -41,9 +41,6 @@ window.addEventListener('load',()=>{
         <Link to="/hist">
           <button type="button">CHECK YOUR LOCATION HISTORY</button>
         </Link>
-        <Link to="/hist_all">
-          <button type="button">CHECK ALL LOGIN USERS</button>
-        </Link>
         {modal ? (
           <button type="button" onClick={handleDelete}>
             DELETE ACCOUNT
