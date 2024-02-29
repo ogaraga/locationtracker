@@ -24,7 +24,10 @@ const History = () => {
   return (
     <>
       <h1>LOCATION HISTORY</h1>
-      <p>The coordinates at this time, {date}, is : </p>
+      <span style={{color: "gray", textAlign: "center"}}>userName: {user.userName}; </span>
+      <span style={{color:"gray",textAlign: "center"}}>email: {user.email} </span>
+      <br />
+      <p>User`s postion at this time, {date}, was : </p>
       <span style={{ color: "black", textAlign: "center" }}>{[location]} </span>
       <br />
       <br />

@@ -14,6 +14,7 @@ const Dashboard = () => {
   const handles = () => {
     setModal(modal);
   };
+
   const handleEdit = async () => {
     // e.preventDefault();
     await axios
@@ -36,7 +37,10 @@ const Dashboard = () => {
           </button>
         </Link>{" "}
         <Link to="/hist">
-          <button type="button">CHECK HISTORY</button>
+          <button type="button">CHECK YOUR LOCATION HISTORY</button>
+        </Link>
+        <Link to="/hist_all">
+          <button type="button">CHECK ALL LOGIN USERS</button>
         </Link>
         {modal ? (
           <button type="button" onClick={handleDelete}>

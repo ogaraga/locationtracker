@@ -12,6 +12,7 @@ import Update from './components/Update';
 import PageNotFound from './components/PageNotFound';
 import { useContext } from 'react';
 import UserContextApi from './context/userContext';
+import AllHistory from './components/AllHistory';
 function App() {
   const {user} = useContext(UserContextApi)
   return (    
@@ -27,6 +28,7 @@ function App() {
       <Route path='/notification'  element ={<Notification/>} />
       <Route path='/dash'  element ={<Dash/>} />
       <Route path='/hist'  element ={<History/>} />
+      <Route path='/hist_all'  element ={<AllHistory/>} />
       <Route path={`/update/${user.id}`}  element ={<Update
       />} />
       <Route path='*'  element ={<PageNotFound/>} />

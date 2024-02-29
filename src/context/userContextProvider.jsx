@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import {useState } from "react";
 import UserContextApi from "./userContext";
-// import { useParams } from "react-router-dom";
 
 const UserContextProvider = ({ children }) => {
   
