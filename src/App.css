@@ -10,7 +10,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: auto;
+  margin-top: 10px;
   overflow-x: hidden;
   overflow-y: visible;
 }

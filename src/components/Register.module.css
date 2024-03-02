@@ -1,15 +1,19 @@
-
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box
+}
 .register{
     margin: auto 10px;
     min-width: 300px;;
-    min-height: 400px;
+    min-height: 300px;
     border: 1px dashed grey;
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction: column;
     border-width: 3px;
-    margin-bottom: 25px auto;
+   
 }
 h1{
     text-align: center;
@@ -21,13 +25,14 @@ h1{
 label{
     color: grey;
     font-weight: 900;
-    margin: 1px auto;
+    margin-bottom: 2px ;
 }
 input{
     padding: 7px;
     width: auto;
     border: 1px solid grey;
     outline: none;
+    margin-top: -5px;
 
 }
 input:focus{
@@ -50,7 +55,6 @@ button:hover{
 }
 .btn{
     display: flex;
-    margin-top: 20px;
     gap: 5px;
 }
 .uniq{
@@ -58,7 +62,7 @@ button:hover{
     padding: 5px;
     cursor: pointer;
     border: 1px solid grey;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 .uniq:hover{
     background-color: grey;
