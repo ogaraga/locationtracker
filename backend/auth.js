@@ -1,7 +1,5 @@
 /* eslint-disable no-undef */
 // routes/auth.js
-import { Router } from 'express';
-const router = Router();
 import jwt from 'jsonwebtoken';
 
 // middleware/authMiddleware.js to protect routes by verifying token
@@ -23,5 +21,3 @@ try {
  }
  }}
 
-
-export default router;

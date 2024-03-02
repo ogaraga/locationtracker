@@ -2,36 +2,50 @@ import axios from "axios";
 import styles from "./Register.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import mage from "../assets/arrow.png";
-import { useContext} from "react";
+import { useContext } from "react";
 import UserContextApi from "../context/userContext";
+
+
 const Register = () => {
-  const {user, setUser } = useContext(UserContextApi);
+  const { user, setUser } = useContext(UserContextApi);
   const navigate = useNavigate();
   const handleChange = (ev) => {
     setUser({ ...user, [ev.target.name]: ev.target.value });
   };
+
   
+
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
-      await axios
-        .post("http://localhost:5000/register", user)
-        .then(res => {if(res.data){
+    await axios
+      .post("http://localhost:5000/register", user)
+      .then((res) => {
+        if (res.data) {
           document.getElementById("lab").innerHTML =
-        "Wait, creating your profile...";
-      document.getElementById("lab").style.color = "green";
-      setTimeout(() => {
-        navigate("/login");
-      }, 5000)
+            "Wait, creating your profile...";
+          setTimeout(() => {
+            document.getElementById("lab").innerHTML =
+              "Profile created!";
+          }, 4000);
+          setTimeout(() => {
+            document.getElementById("lab").innerHTML =
+              "login page opening...";
+          }, 7000);
+          document.getElementById("lab").style.color = "green";
+          setTimeout(() => {
+            navigate("/login");
+          }, 10000);
+        } else {
+          console.log("internal error");
         }
-          else{
-            console.log('internal error')
-          }
-        }).catch(err=>{if(err)
-          document.getElementById("lab").innerHTML = "user already created or wrong password";
-          document.getElementById("lab").style.color = "red";        
-      } );    
-    
+      })
+      .catch((err) => {
+        if (err)
+          document.getElementById("lab").innerHTML =
+            "user exists || passwords mismatch";
+        document.getElementById("lab").style.color = "red";
+      });
   };
   return (
     <>
@@ -44,6 +58,17 @@ const Register = () => {
         </div>
         <h1>Sign up here</h1>
         <form onSubmit={handleSubmit} className={styles.register} method="post">
+        <label htmlFor="username">ID:</label>
+          <input
+            type="number"
+            name="userName"
+            placeholder="userId"
+            value={user.userId}
+            onChange={handleChange}
+            required
+            autoComplete="off" disabled
+          />
+          <br />
           <label htmlFor="username">Username:</label>
           <input
             type="text"

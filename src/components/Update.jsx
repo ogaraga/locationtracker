@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Update = () => {
   const {user, setUser, modal, setModal } = useContext(UserContextApi);
 
-  const value = `/profile/${user.id}`;
+  const value = `/profile/${user.userId}`;
 
   const handleChange = (e) => {
     // e.preventDefault();
@@ -14,37 +14,40 @@ const Update = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+        try {
       await axios
-      .put(`http://localhost:5000/register/${user.id}`, user)
+      .put(`http://localhost:5000/register/${user.userId}`, user)
       .then((res) => {
         if (res.data) {
-          alert("Profile_Updated successfully");
-          navigate(`/update/${user.id}`);
+          alert("Profile_Updated_successfully");
+          navigate(`/update/${user.userId}`);
+          setModal(!modal);
          }
       })
       .catch((err) => {
         if (err) {
           alert(err.message);
-          navigate(`/update/${user.id}`);
+          navigate(`/profile/${user.userId}`);
+          setModal(modal);
         }
       });
-    setModal(!modal);
     } catch (error) {
       alert(error.message)
-      navigate(`/update/${user.id}`);
+      navigate(`/profile/${user.userId}`);
+      setModal(modal);
+    
     }
     
   };
   const navigate = useNavigate();
   const handleops = () => {
     setModal(!modal);
-    navigate(`/profile/${user.id}`);
+    navigate(`/profile/${user.userId}`);
   };
   return (
     <div>
       <h1>Update your Records here</h1>
-      {modal ? (
+      {!modal ? (
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -66,19 +69,8 @@ const Update = () => {
             autoComplete="off"
             style={{ margin: "10px", padding: "10px" }}
             required
-          />
-          <br />
-          <input
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-            placeholder="enter your password"
-            autoComplete="off"
-            style={{ margin: "10px", padding: "10px" }}
-            required
-          />
-          <br />
+          /> <br />
+         
           <button type="submit" style={{ margin: "10px", padding: "10px" }}>
             Save
           </button>
@@ -86,7 +78,7 @@ const Update = () => {
       ) : (
         <Link to={value}>
           <button onClick={handleops}>
-            Account now updated click here to go back
+            Dashboard
           </button>
         </Link>
       )}

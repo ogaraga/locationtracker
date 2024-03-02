@@ -19,17 +19,23 @@ const Login = () => {
       .post("http://localhost:5000/login", user)
       .then(res => {
         if (res.data) {
-          document.getElementById("lab").innerHTML = "Wait, logging in ...";
+          document.getElementById("lab").innerHTML = "Checking credentials...";
+          setTimeout(() => {
+            document.getElementById("lab").innerHTML = "Credentials verified!";
+          }, 4000);
+          setTimeout(() => {
+            document.getElementById("lab").innerHTML = "Logging in ...";
+          }, 7000);          
           document.getElementById("lab").style.color = "green";
           setTimeout(() => {
-            navigate("/home");
-          }, 5000);
+            navigate(`/home/${user.userId}`);
+          }, 10000);
         }
         else{
          alert('internal/network error');
         }
       }).catch((err) =>{if(err)
-        document.getElementById("lab").innerHTML = "Invalid email or password";
+        document.getElementById("lab").innerHTML = "Incorrect credential(s)";
         document.getElementById("lab").style.color = "red";
          
     } )

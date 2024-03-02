@@ -19,8 +19,11 @@ const History = () => {
     }
   }, []);
   const date = new Date().toLocaleTimeString();
-  const { user } = useContext(UserContextApi);
-  const value = `/profile/${user.id}`;
+  const { user, modal, setModal } = useContext(UserContextApi);
+  const value = `/profile/${user.userId}`;
+  const item =()=>{
+    setModal(!modal);
+  }
   return (
     <>
       <h1>LOCATION HISTORY</h1>
@@ -32,7 +35,7 @@ const History = () => {
       <br />
       <br />
       <Link to={value}>
-        <button>Dashboard</button>
+        <button onClick={item}>Dashboard</button>
       </Link>
     </>
   );

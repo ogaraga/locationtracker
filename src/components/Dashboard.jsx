@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Dashboard.module.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import UserContextApi from "../context/userContext";
 import Alerts from "./Alerts";
 import axios from "axios";
@@ -19,15 +19,17 @@ window.addEventListener('load',()=>{
 
   const handleEdit = async () => {
     // e.preventDefault();
+    setModal(!modal);
     await axios
-      .get(`http://localhost:5000/register/${user.id}`)
+      .get(`http://localhost:5000/register/${user.userId}`)
       .then((res) => setUser(res.data))
       .catch((err) => console.log(err));
+     
   };
-  // useEffect(() => {
-  //   handleEdit();
-  // }, []);
-  const value = `/update/${user.id}`;
+  useEffect(() => {
+    handleEdit();
+  }, []);
+  const value = `/update/${user.userId}`;
 
   return (
     <>
@@ -48,7 +50,7 @@ window.addEventListener('load',()=>{
         ) : (
           <Alerts />
         )}
-        <Link to="/home">
+        <Link to={`/home/${user.userId}`}>
           <button type="button" onClick={handles}>
             Back Home
           </button>

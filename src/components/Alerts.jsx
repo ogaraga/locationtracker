@@ -6,25 +6,27 @@ import axios from "axios";
 
 const Alerts = () => {
   const navigate = useNavigate();
-  const { user, modal, setModal } = useContext(UserContextApi);
+  const { user,setUser, modal, setModal } = useContext(UserContextApi);
   const handleNo = () => {
     setModal(!modal);
   };
   window.addEventListener("load", () => {
     setModal(!modal);
   });
-  const handleOk = async (id) => {
+  const handleOk = async (userId) => {
     try {
       await axios
-        .delete(`http://localhost:5000/register/${id}`)
+        .delete(`http://localhost:5000/register/${userId}`)
         .then((res) => res.json(res.data));
         alert('profile deleted')
-      navigate(`/profile/${user.id}`);
+        const left = await user.filter(item => item.userId !== userId)
+        setUser(left);
+      navigate(`/profile/${user.userId}`);
       setModal(!modal);
     } catch (error) {
       alert(error.message);
       setModal(!modal);
-      navigate(`/profile/${user.id}`);
+      navigate(`/profile/${user.userId}`);
     }
   };
 
@@ -32,7 +34,7 @@ const Alerts = () => {
     <div className={styles.alert}>
       <p>
         Do you want to delete your account? <br />
-        <button type="submit" onClick={() => handleOk(user.id)}>
+        <button type="submit" onClick={() => handleOk(user.userId)}>
           Ok
         </button>
         <button onClick={handleNo}>No</button>

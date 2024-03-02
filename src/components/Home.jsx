@@ -6,10 +6,14 @@ import styles from "./Home.module.css";
 import MapContainers from "./MapContainers";
 import { Link } from "react-router-dom";
 import style from "./MapContainers.module.css";
+
+
+
+
 const Home = () => {
   const {user, modal, setModal } = useContext(UserContextApi);
  
-  const value = `/profile/${user.id}`
+  const value = `/profile/${user.userId}`
   window.addEventListener("load", () => {
     setModal(!modal);
   });
@@ -21,6 +25,9 @@ const Home = () => {
   const handleClose = () => {
     setOpen(!open);
   };
+  const item =()=>{
+    setModal(!modal);
+  }
   return (
     <>
       <header className={styles.header}>
@@ -49,7 +56,7 @@ const Home = () => {
               >
                 <div className={styles.divlink}>
                   <Link to={value}>
-                    <p className={styles.span1} >
+                    <p className={styles.span1} onClick={item} >
                       Profile
                     </p>
                   </Link>

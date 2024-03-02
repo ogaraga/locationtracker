@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 // import bcrypt from 'bcryptjs'
-const mySchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     userName: {
         type: String,
         require: true,
@@ -23,8 +23,15 @@ const mySchema = new mongoose.Schema({
         require: true,
         minLength: 4['password too short']
         
-    },
+    }, 
+    userId:{
+        type: Number,
+        unique: true,
+        min: 1,
+        max: 90000000000
+    }   
 
 }, {timeStamp: true})
 
-export default mongoose.model('User', mySchema);
+export const User =mongoose.model('User', userSchema);
+
