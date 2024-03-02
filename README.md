@@ -29,7 +29,7 @@ We were able to hash passwords, applied jwt token for authroization to use our w
 # INTEGRATION OF MAP WITH REACT
 The geolocation browser Map was independently done to be able to track down the coordinates of the user location at any point in time. We therefore integrated it into map leaflet which helped us achieve greater result with its useMapEvents hooks and other library like the openStreetMap and its attribution class.
 # DATABASE connection/express-server connection
-Before anything can work, we needed to initiate or start the express to connect the server and the database together
+Before anything can work, we needed to initiate or start the express to connect the server and the database together. If you are not connected to database via nodejs/express, you mightnt login even though you get registered/signed up. 
 # Frontend
 we installed mongodb/mongoose at the front (reactjs) to avoid roll-up error so that vercel can resolve it properly
 # VERCEL
