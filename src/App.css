@@ -93,3 +93,19 @@ Marker {
     height: 300px !important;
   }
 }
+
+footer{
+text-align: center;
+background-color: gray;
+width: 100vw;
+height: 8vh;
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+margin-bottom: -10px;
+}
+footer p{
+  color: white;
+  text-align: center;   
+}
