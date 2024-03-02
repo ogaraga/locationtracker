@@ -43,7 +43,7 @@ const Register = () => {
       .catch((err) => {
         if (err)
           document.getElementById("lab").innerHTML =
-            "user exists || passwords mismatch";
+            "user exists||passwords mismatch||Server unreachable";
         document.getElementById("lab").style.color = "red";
       });
   };

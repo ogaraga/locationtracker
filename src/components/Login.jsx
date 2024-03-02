@@ -35,7 +35,7 @@ const Login = () => {
          alert('internal/network error');
         }
       }).catch((err) =>{if(err)
-        document.getElementById("lab").innerHTML = "Invalid credential(s) || Database unreachable";
+        document.getElementById("lab").innerHTML = "Invalid Value(s) || Database unreachable";
         document.getElementById("lab").style.color = "red";
          
     } )
