@@ -110,8 +110,8 @@ router.post('/login', async (req, res) => {
                 }
                 else {
                     await user.save();
-                    const token = jwt.sign(userInfo, process.env.SEC_KEY_ACCESS, { expiresIn: '0.5h' });
-                    res.status(200).json({ user, token })
+                    const token = jwt.sign(userInfo, process.env.SEC_KEY_ACCESS, { expiresIn: '0.5h' });                    
+                    res.status(200).json({user, token})
                 }
             });
 
