@@ -15,8 +15,8 @@ const Profile = () => {
     <header className= {styles.header}>
       <nav className={styles.nav} >
         <h3>GEOLOCATION</h3>
-         <div style={{display:"flex", alignItems:"center", justifyContent:"center", margin:'auto', color: "blue"}}>
-         <span>{user.userName ||user.email}</span>
+         <div style={{display:"flex", alignItems:"center", justifyContent:"center", margin:'auto'}}>
+         <span style={{ color: "blue"}}>{user.userName ||user.email}</span>
          <img src="https://api.dicebear.com/7.x/adventurer/svg" alt="Avatar" width= '100'  height= '50'/>
         </div>        
       </nav>
