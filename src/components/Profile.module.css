@@ -77,12 +77,6 @@ footer p{
     border-radius: 50%;
     background-color:transparent
 }
-.username{
-    position: absolute;
-    right: 8%;
-    top:38%;
-    color: blue;
-}
 
 @media screen and (max-width:800) {
     nav{
