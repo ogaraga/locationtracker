@@ -92,7 +92,7 @@ Nav{
 }
 h3{
     background-color: coral;
-    background: linear-gradient(to right, green,yellow,blue, aliceblue,blue, crimson,teal);
+    background: linear-gradient(to right, green,yellow,blue, crimson,blue, crimson,teal);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: cursive;
