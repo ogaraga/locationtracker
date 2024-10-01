@@ -6,14 +6,13 @@ import router from './routes.js';
 import cors from 'cors';
 import cookiesParser from 'cookie-parser';
 const app = express();
-import  verifyToken from './auth.js';
 import bodyParser from 'body-parser';
 
 Dotenv.config();
 connectedDb();
 const PORT = process.env.PORT || 3000;
 app.use(cors({
-    origin: ['https://locationtracker-client.vercel.app/'],
+    origin: ['https://locationtracker-client.vercel.app'],
     methods: ['POST', 'GET', 'PUT', 'DELETE'],
     credentials: true
 }))
