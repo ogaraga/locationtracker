@@ -7,7 +7,11 @@ import verifyToken from "./auth.js";
 
 const router = express.Router();
 
-
+//register page
+router.get('/', verifyToken,(req, res) => {
+    res.send('Welcome to backend home page!')
+})
+//protected home page
 router.get('/home/:userId', verifyToken,(req, res) => {
     res.send('Welcome to backend home page!')
 })

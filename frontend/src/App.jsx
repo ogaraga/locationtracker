@@ -26,7 +26,6 @@ function App() {
          <Route path="/register" index element={<Register />} />
          <Route path="/login" element={<Login />} />
          <Route path={`/profile/${user.userId}`} element={<Profile />} />
-
          <Route path="/alerts" element={<Alerts />} />
          <Route path="/notification" element={<Notification />} />
          <Route path="/dash" element={<Dash />} />
