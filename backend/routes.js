@@ -3,6 +3,7 @@ import express from "express";
 import { User } from "./User.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import verifyToken from "./auth.js";
 
 const router = express.Router();
 
@@ -52,7 +53,7 @@ router.post('/register', async (req, res) => {
 });
 
 
-router.get('/register', async (req, res) => {
+router.get('/register', verifyToken,async (req, res) => {
     //find a specific user
     if (req.query.userId) {
         try {
@@ -118,7 +119,7 @@ router.post('/login', async (req, res) => {
         }
     }
 })
-router.get('/login', async (req, res) => {
+router.get('/login', verifyToken, async (req, res) => {
     const user = await User.find();
     if (!user) {
         throw res.status(400).json('No data to fetch');
@@ -126,7 +127,7 @@ router.get('/login', async (req, res) => {
         res.status(200).json(user)
     }
 });
-router.put('/register/:userId', async (req, res) => {
+router.put('/register/:userId', verifyToken,async (req, res) => {
 
     const user = await User.findById({ userId: req.params.userId })
 
@@ -148,7 +149,7 @@ router.put('/register/:userId', async (req, res) => {
 
 }
 )
-router.delete('/register/:userId', async (req, res) => {
+router.delete('/register/:userId', verifyToken,async (req, res) => {
     const user = await User.findById({ userId: req.params.userId })
     if (!user) {
         res.status(400).json('No profile to delete')
