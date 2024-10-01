@@ -15,6 +15,7 @@ const Alerts = () => {
   });
   const handleOk = async (userId) => {
     try {
+      await 
       await axios
         .delete(`https://locationtracker-api.vercel.app/register/${userId}`)
         .then((res) => res.json(res.data)).catch(err =>console.log(err.message));       

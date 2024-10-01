@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-    res.send('loading...')
+    res.send('Welcome to backend home page!')
 })
 
 
@@ -53,33 +53,33 @@ router.post('/register', async (req, res) => {
 });
 
 
-router.get('/register', verifyToken,async (req, res) => {
-    //find a specific user
-    if (req.query.userId) {
-        try {
-            const user = await User.find({ userId: req.query.userId })
-            if (user.length <= 0) {
-                res.status(404).json(`No user with ${userId}`)
-            } else {
-                res.status(200).json(user);
-            }
-        } catch (error) {
-            res.status(500).json(error.message);
-        }
-    } else {
-        //find all users
-        const user = await User.find();
-        if (user.length <= 0) {
-            res.status(404).json('Database is empty');
-        } else {
-            try {
-                res.status(200).json(user);
-            } catch (error) {
-                res.status(500).json(error.message)
-            }
-        }
-    }
-})
+// router.get('/register', verifyToken,async (req, res) => {
+//     //find a specific user
+//     if (req.query.userId) {
+//         try {
+//             const user = await User.find({ userId: req.query.userId })
+//             if (user.length <= 0) {
+//                 res.status(404).json(`No user with ${userId}`)
+//             } else {
+//                 res.status(200).json(user);
+//             }
+//         } catch (error) {
+//             res.status(500).json(error.message);
+//         }
+//     } else {
+//         //find all users
+//         const user = await User.find();
+//         if (user.length <= 0) {
+//             res.status(404).json('Database is empty');
+//         } else {
+//             try {
+//                 res.status(200).json(user);
+//             } catch (error) {
+//                 res.status(500).json(error.message)
+//             }
+//         }
+//     }
+// })
 
 
 router.post('/login', async (req, res) => {
@@ -119,14 +119,16 @@ router.post('/login', async (req, res) => {
         }
     }
 })
-router.get('/login', verifyToken, async (req, res) => {
-    const user = await User.find();
-    if (!user) {
-        throw res.status(400).json('No data to fetch');
-    } else {
-        res.status(200).json(user)
-    }
-});
+// router.get('/login', verifyToken, async (req, res) => {
+//     const user = await User.find();
+//     if (!user) {
+//         throw res.status(400).json('No data to fetch');
+//     } else {
+//         res.status(200).json(user)
+//     }
+// });
+
+
 router.put('/register/:userId', verifyToken,async (req, res) => {
 
     const user = await User.findById({ userId: req.params.userId })
@@ -149,6 +151,7 @@ router.put('/register/:userId', verifyToken,async (req, res) => {
 
 }
 )
+//delete route for 
 router.delete('/register/:userId', verifyToken,async (req, res) => {
     const user = await User.findById({ userId: req.params.userId })
     if (!user) {
