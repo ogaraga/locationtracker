@@ -21,9 +21,9 @@ app.use(bodyParser.json())
 app.use(express.json());
 app.use(cookiesParser())
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', router);
-app.use('/register/:id')
+app.use(router);
+app.use('/register/:id',verifyToken)
 app.use('/home', verifyToken);
-app.use('/login');
+app.use('/login', verifyToken);
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
