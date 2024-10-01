@@ -16,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     await axios
-      .post("http://localhost:5000/login", user)
+      .post("https://locationtracker-api.vercel.app/login", user)
       .then(res => {
         if (res.data) {
           document.getElementById("lab").innerHTML = "Checking credentials...";

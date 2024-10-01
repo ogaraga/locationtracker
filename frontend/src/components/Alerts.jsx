@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Alerts = () => {
   const navigate = useNavigate();
-  const { user,setUser, modal, setModal } = useContext(UserContextApi);
+  const { user, modal, setModal } = useContext(UserContextApi);
   const handleNo = () => {
     setModal(!modal);
   };
@@ -16,12 +16,11 @@ const Alerts = () => {
   const handleOk = async (userId) => {
     try {
       await axios
-        .delete(`http://localhost:5000/register/${userId}`)
-        .then((res) => res.json(res.data));
+        .delete(`https://locationtracker-api.vercel.app/register/${userId}`)
+        .then((res) => res.json(res.data)).catch(err =>console.log(err.message));       
+        await user.filter(item => item.userId !== userId)
         alert('profile deleted')
-        const left = await user.filter(item => item.userId !== userId)
-        setUser(left);
-      navigate(`/profile/${user.userId}`);
+       navigate(`/profile/${user.userId}`);
       setModal(!modal);
     } catch (error) {
       alert(error.message);

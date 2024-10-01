@@ -19,7 +19,7 @@ const Register = () => {
     ev.preventDefault();
 
     await axios
-      .post("http://localhost:5000/register", user)
+      .post("https://locationtracker-api.vercel.app/register", user)
       .then((res) => {
         if (res.data) {
           document.getElementById("lab").innerHTML =

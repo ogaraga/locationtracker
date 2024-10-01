@@ -21,7 +21,7 @@ window.addEventListener('load',()=>{
     // e.preventDefault();
     setModal(!modal);
     await axios
-      .get(`http://localhost:5000/register/${user.userId}`)
+      .get(`https://locationtracker-api.vercel.app/register/${user.userId}`)
       .then((res) => setUser(res.data))
       .catch((err) => console.log(err));
      

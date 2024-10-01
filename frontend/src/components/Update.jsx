@@ -16,7 +16,7 @@ const Update = () => {
     e.preventDefault();
         try {
       await axios
-      .put(`http://localhost:5000/register/${user.userId}`, user)
+      .put(`https://locationtracker-api.vercel.app/register/${user.userId}`, user)
       .then((res) => {
         if (res.data) {
           alert("Profile_Updated_successfully");
