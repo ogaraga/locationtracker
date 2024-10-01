@@ -3,11 +3,8 @@ import express from "express";
 import { User } from "./User.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-// import { ObjectId } from "bson";
+
 const router = express.Router();
-
-
-
 
 
 router.get('/', (req, res) => {
