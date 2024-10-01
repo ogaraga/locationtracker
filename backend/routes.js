@@ -8,7 +8,7 @@ import verifyToken from "./auth.js";
 const router = express.Router();
 
 
-router.get('/', verifyToken,(req, res) => {
+router.get('/home/:userId', verifyToken,(req, res) => {
     res.send('Welcome to backend home page!')
 })
 

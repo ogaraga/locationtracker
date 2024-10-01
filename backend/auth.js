@@ -17,7 +17,7 @@ const verifyToken = (req, res, next)=> {
             res.status(200).json('Access granted!')
             next();
         } catch (error) {
-            res.status(401).json({ error: 'Invalid token' });
+            res.status(401).json(error.message);
         }
     }
 }

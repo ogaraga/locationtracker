@@ -13,13 +13,12 @@ connectedDb();
 const PORT = process.env.PORT || 3000;
 app.use(cors({
     origin: ['https://locationtracker-client.vercel.app'],
-    methods: ['POST', 'GET', 'PUT', 'DELETE'],
-    credentials: true
+    methods: ['POST', 'GET', 'PUT', 'DELETE']
 }))
 app.use(bodyParser.json())
 app.use(express.json());
 app.use(cookiesParser())
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

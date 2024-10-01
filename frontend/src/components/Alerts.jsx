@@ -17,9 +17,9 @@ const Alerts = () => {
     try {
       await 
       await axios
-        .delete(`https://locationtracker-api.vercel.app/register/${userId}`)
+        .delete(`https://locationtracker-api.vercel.app/register/${userId}`, userId)
         .then((res) => res.json(res.data)).catch(err =>console.log(err.message));       
-        await user.filter(item => item.userId !== userId)
+        // await user.filter(item => item.userId !== userId)
         alert('profile deleted')
        navigate(`/profile/${user.userId}`);
       setModal(!modal);
