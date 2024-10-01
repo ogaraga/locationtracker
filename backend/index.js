@@ -13,7 +13,7 @@ Dotenv.config();
 connectedDb();
 const PORT = process.env.PORT || 3000;
 app.use(cors({
-    origin: ['https://locationtracker-sigma.vercel.app/'],
+    origin: ['https://locationtracker-client.vercel.app/'],
     methods: ['POST', 'GET', 'PUT', 'DELETE'],
     credentials: true
 }))
